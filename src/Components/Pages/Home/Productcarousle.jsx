@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {Navigation, Pagination, Scrollbar, A11y} from "swiper/modules";
+import {Navigation, Pagination, A11y} from "swiper/modules";
 
 import {Swiper, SwiperSlide} from "swiper/react";
 import "./productcarousle.css"
-function Productcarousle(props) {
+function Productcarousle() {
     const [productData, setproductData] = useState([])
     useEffect(() => {
         fetch('graphql', {
@@ -57,7 +57,7 @@ function Productcarousle(props) {
     return (<>
         {/*<h2>NEW ARRIVALS</h2>*/}
         <div className="product-slider">
-            <h2>NEW ARRIVALS</h2>
+
             <Swiper
                 // install Swiper modules
                 modules={[Navigation, Pagination,  A11y]}

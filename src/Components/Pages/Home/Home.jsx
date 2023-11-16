@@ -10,7 +10,7 @@ import "swiper/css/scrollbar";
 import "./Home.css"
 import Productcarousle from "./Productcarousle";
 
-function Home(props) {
+function Home() {
     return (
         <>
             <div className="homepage">
@@ -68,9 +68,42 @@ function Home(props) {
                         <span>KIDS</span>
                     </div>
                 </div>
-                <img className="pagebuilder-mobile-hidden" src="https://www.reebok.ae/media/wysiwyg/1920-x-560-RBK-BLKNOV-LASTCHANCE.gif" alt="" title="" data-element="desktop_image" data-pb-style="WHU64GN"/>
+                <img className="pagebuilder-mobile-hidden"
+                     src="https://www.reebok.ae/media/wysiwyg/1920-x-560-RBK-BLKNOV-LASTCHANCE.gif" alt="" title=""
+                     data-element="desktop_image" data-pb-style="WHU64GN"/>
+                <div className="First_card_section">
+                    <h2>NEW ARRIVALS</h2>
+                </div>
                 <Productcarousle/>
+                <div className="First_card_section">
+                    <h2>BLACK NOVEMBER DEALS</h2>
+                </div>
 
+                <div className="First_card_section">
+
+                    <div className="card">
+                        <img src="https://www.reebok.ae/media/wysiwyg/900-X-1200-TSHIRTS-UNDER-79_rev.gif" alt="image"/>
+                        <p>FONT AND CENTER</p>
+                    </div>
+                    <div className="card">
+                        <img src="https://www.reebok.ae/media/wysiwyg/900-X-1200-SHOES-UNDER-99_rev.gif" alt="image"/>
+                        <p>FORWARD MOVES ONLY</p>
+                    </div>
+                    <div className="card">
+                        <img src="https://www.reebok.ae/media/wysiwyg/900-X-1200-ACCESSORIES-UNDER-79_rev.gif"
+                             alt="image"/>
+                        <p>CLASSIC FROM HEAD TO TOE</p>
+                    </div>
+                    <div className="card">
+                        <img src="https://www.reebok.ae/media/wysiwyg/900-X-1200-BOTTOMS-UNDER-99_rev.gif" alt="image"/>
+                        <p>STYLE STARTS HERE</p>
+                    </div>
+                </div>
+                <div className="First_card_section">
+                    <h2>YOU MAY ALSO LIKE</h2>
+                </div>
+
+                <Productcarousle/>
             </div>
         </>
     );
