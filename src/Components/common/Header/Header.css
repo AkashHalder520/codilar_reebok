@@ -1,13 +1,10 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
 
 .page-header , .header-container , .header-top{
     background-color: #244496;
     height: 30px;
     text-align: center;
+
 
 }
 .frist-link{
@@ -80,6 +77,13 @@ a:hover{
     color: black;
     font-weight: 500;
 }
+.nav a:hover {
+    /*text-decoration: none;*/
+    /*color: black;*/
+    /*font-weight: 500;*/
+    text-decoration: underline;
+
+}
 
 .search-bar {
     margin-left: auto;
@@ -117,6 +121,7 @@ a:hover{
 .toggleButton{
     background-color: white;
     border: none;
+    display: none;
 }
 
 .sidebar{
@@ -145,3 +150,32 @@ a:hover{
 }
 
 /*************************/
+.nav li:hover .dropdown{
+    display: block;
+}
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    list-style-type: none;
+    padding: 0;
+}
+
+.dropdown li {
+    padding: 8px 12px;
+}
+
+.dropdown li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+/* Show dropdown on hover */
+.navigation li:hover .dropdown {
+    display: block;
+
+}

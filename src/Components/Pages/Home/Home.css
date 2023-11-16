@@ -1,0 +1,63 @@
+.top-carousle{
+    position: relative;
+    z-index: -1;
+}
+.popular , .button-links{
+    display: flex;
+    justify-content: center;
+}
+
+
+.links {
+    display: flex;
+    gap: 10px; /* Adjust the value to set the desired space between buttons */
+}
+
+.button-links button {
+    background-color: transparent;
+    /*border: ;*/
+    border: none;
+    padding: 20px;
+}
+
+.button-links button a {
+    text-decoration: none;
+    color: inherit;
+}
+.button-links button:hover {
+    /*background-color: transparent;*/
+    border: 2px solid black;
+    cursor: pointer;
+    /*padding: 20px;*/
+}
+
+/*firstcardsection*/
+
+.First_card_section {
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+    gap: 0.5%
+}
+
+.card{
+    position: relative;
+    text-align: center;
+
+
+}
+.card img{
+    width:100%
+}
+
+.card span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    color: white; /* Set the text color to white */
+    /*background-color: rgba(0, 0, 0, 0.5); !* Add a background color with some transparency for better readability *!*/
+    padding: 10px;
+}
+
