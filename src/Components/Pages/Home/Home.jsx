@@ -104,6 +104,23 @@ function Home() {
                 </div>
 
                 <Productcarousle/>
+
+                <div className="homeparagraph">
+                    <div>
+                        <h3>SMASHING IT WITH REEBOK SPORTSWEAR</h3>
+                        <p>
+                            Once you find a sport you love, it all makes sense. In a hectic world, gift yourself the time you need to free your mind and let your body move. Don’t hesitate to get out there, you know it’ll be worth it. Whether it’s a jog in the rain or yoga in your lunchbreak, stick with it and you’ll feel on top of the world each time. When life’s busy or you don’t feel like it – take charge, and move with conviction. It’ll feel even better when you rise to meet the challenge. You can make it social by teaming up with a friend and training with a buddy. Feel good, feel great! Well fitting, beautifully designed sports clothing that’s a pleasure to wear plays a huge part in getting you out there to live your best life. Follow your passion in comfortable, specialist sportswear from Reebok that will boost your motivation and enhance your performance.
+                        </p>
+
+                    </div>
+                    <div>
+                        <h3>SPORT SHOP SHOWCASING EPIC REEBOK CHOICE</h3>
+                        <p>
+                            Whatever your thing – dance, cross training, boxing, running or the gym – you’ll find Reebok sports gear in our online sport shop that will trigger your enthusiasm. All our workout clothes offer thoughtful design, elevated fabrics and comfort to power you through your sessions looking and feeling your best. Packed with useful design features to keep you free from distraction, we pride ourselves on the choice we offer across sports with dedicated ranges and stylish collections for adults and children. From ventilated, technically designed gear for high intensity workouts to stylish and comfy cool-down looks that are fashionable enough to hang out in all day, we’ve got it covered with a huge range of sizes and styles. Check out our outstanding range of trainers offering colourful style alongside collaborations with designers and sportspeople as well as classic Reebok retro looks. Proud of our British heritage, Reebok clothes are built for the long-haul and are designed to accompany you on your sports journey.
+                        </p>
+                    </div>
+
+                </div>
             </div>
         </>
     );

@@ -61,3 +61,15 @@
     padding: 10px;
 }
 
+/*****************/
+.homeparagraph{
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+    gap: 2vw;
+
+}
+.homeparagraph p{
+    font-size: 13px;
+    font-weight: 300;
+}

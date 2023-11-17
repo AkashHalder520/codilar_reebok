@@ -57,6 +57,10 @@ function Productcarousle() {
     return (<>
         {/*<h2>NEW ARRIVALS</h2>*/}
         <div className="product-slider">
+            <div className="viewall">
+                <a href="">View all</a>
+            </div>
+
 
             <Swiper
                 // install Swiper modules
