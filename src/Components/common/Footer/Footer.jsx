@@ -10,7 +10,7 @@ function Footer(props) {
                     PAIR UP WITH US AND GET <br/>15% 0FF
                 </div>
                 <div className="newsletterbtn">
-                    <button>Sign up for newsletter -></button>
+                    <button>{`Sign up for newsletter->` }</button>
                 </div>
             </div>
 
