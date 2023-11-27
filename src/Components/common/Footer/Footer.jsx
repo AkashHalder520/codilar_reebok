@@ -56,9 +56,9 @@ function Footer(props) {
                                 <li><a href="#">dress</a></li>
                             </ul>
                         </div>
-                        <div class="footer-col">
+                        <div className="footer-col">
                             <h4>FOLLOW US</h4>
-                            <div class="social-links">
+                            <div className="social-links">
                                 <a href="#"><FaFacebook size={30}/></a>
                                 <a href="#"><FaInstagram size={30}/></a>
                             </div>

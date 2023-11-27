@@ -1,0 +1,122 @@
+.sidenav {
+    /* align-items: left; */
+    height: 100%;
+    /* 100% Full-height */
+    width: 0;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    /* Stay at the top */
+    right: 0;
+    background-color: whitesmoke;
+    /* Black*/
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 60px;
+    /* Place content 60px from the top */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
+  }
+  
+  .sidenavopen {
+    /* align-items: left; */
+    height: 100%;
+    /* 100% Full-height */
+    width: 400px;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    /* Stay at the top */
+    right: 0;
+    background-color: whitesmoke;
+    /* Black*/
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 60px;
+    /* Place content 60px from the top */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
+  }
+  
+  /* The navigation menu links */
+  .sidenavopen a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: black;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  
+  /* Position and style the close button (top right corner) */
+  .sidenavopen .closebtn {
+  
+    border: none;
+    font-size: 36px;
+    margin-left: 50px;
+    background: none;
+  }
+  
+  
+  /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+  #main {
+    transition: margin-left .5s;
+    padding: 20px;
+  }
+  #priceslider{
+    width: 80%;
+    margin: auto;
+    color: black;
+  }
+  .pricesliderpadding{
+    padding: 5%;
+  }
+.desc {
+  margin-top: 120px;
+}
+
+.desc button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+}
+.desc-title {
+  
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: large;
+  font-weight: bold;
+
+
+}
+
+.desc-main {
+ 
+  height: 150px;
+ 
+  /* display: flex; */
+  overflow: hidden;
+  border-bottom: 2px solid #000;
+  
+transition: 0.5s ease-in-out;
+}
+.hidden {
+  height: 0px;
+  /* height: 150px; */
+ 
+  /* display: flex; */
+  overflow: hidden;
+  border-bottom: 2px solid #000;
+  
+transition: 0.5s ease-in-out;
+}

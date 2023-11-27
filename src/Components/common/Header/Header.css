@@ -18,6 +18,16 @@
 a:hover{
     text-decoration: underline;
 }
+@media screen and (max-width: 768px) {
+    .page-header, .header-container, .header-top {
+        height: auto; /* Adjust height as needed for smaller screens */
+    }
+
+    .frist-link {
+        font-size: 10px; /* Adjust font size for smaller screens */
+    }
+}
+
 .header-middle{
     padding-top: 10px;
 }
@@ -54,6 +64,8 @@ a:hover{
     align-items: center;
     max-width: 85%;
     margin: 0 auto;
+   
+    
 }
 .logo {
     font-size: 24px;
@@ -115,6 +127,19 @@ a:hover{
     margin-left: 20px;
 }
 
+@media screen and (max-width: 900px) {
+    .header-main .nav {
+        display: none; /* Hide the header in mobile view */
+    }
+
+}
+
+@media screen and (max-width: 570px) {
+     .search-bar input {
+        display: none; /* Hide the header in mobile view */
+    }
+}
+
 
 /*sidebar*/
 
@@ -125,13 +150,18 @@ a:hover{
 }
 
 .sidebar{
-    width: 250px;
+    display: flex;
+    width: 100%;
     height :100vh;
-    background-color: #61dafb;
+    background-color: whitesmoke;
     position: absolute;
-    
+    z-index: 10;
     transform: translateX(-100%);
     transition: transform 500ms ease-in
+}
+
+.sidebar a{
+    text-decoration: none;
 }
 .sidebar ul li{
     list-style: none;
@@ -140,7 +170,7 @@ a:hover{
     border-bottom: 2px solid black;
 }
 .sidebar ul li:hover{
-    background-color: whitesmoke;
+    background-color: rgb(189, 179, 179);
     color: black ;
 }
 .colapse{
@@ -148,6 +178,19 @@ a:hover{
     transition: transform 500ms ease-in-out;
 
 }
+@media screen and (max-width: 900px) {
+    .toggleButton {
+        display: flex; /* Hide the header in mobile view*/
+    }
+    .logo{
+        margin-left: 25%;
+    }
+    .sidebar{
+        display: block;
+    }
+} 
+
+
 
 /*************************/
 .nav li:hover .dropdown{
@@ -175,7 +218,7 @@ a:hover{
 }
 
 /* Show dropdown on hover */
-.navigation li:hover .dropdown {
+.sidebar li:hover .dropdown {
     display: block;
 
 }
