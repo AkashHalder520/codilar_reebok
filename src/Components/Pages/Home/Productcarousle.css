@@ -6,7 +6,7 @@
 }
 
 
-.product-slider {
+/* .product-slider {
     width: 80%;
     margin: auto;
     position: relative;
@@ -19,11 +19,15 @@
   
   .product-item {
     box-sizing: border-box;
-    width: 20%; /* Set width to 20% for 5 items in a slide */
+    width: 20%; 
     padding: 10px;
     text-align: center;
+    transition: transform 0.5s ease;
   }
-  
+  .hidden {
+    transform: translateX(100%); 
+    
+  }
   .product-item img {
     max-width: 100%;
     height: auto;
@@ -38,14 +42,14 @@
   }
   
   /* Optional: Add styles for active slide or customize as needed */
-  .product-item.active {
+  /* .product-item.active {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
   }
 
   @media (min-width: 576px) {
     .product-item {
-      width: 50%; /* Two items per row on small screens */
+      width: 50%; 
     }
   }
   
@@ -57,21 +61,25 @@
   
   @media (min-width: 992px) {
     .product-item {
-      width: 33.33%; /* Three items per row on medium screens */
+      width: 33.33%; 
     }
   }
   
   @media (min-width: 1200px) {
     .product-item {
-      width: 20%; /* Five items per row on large screens */
+      width: 20%; 
     }
-  }
-  /* .product-slider{
+  } */
+ 
+
+
+
+  .product-slider{
     width: 80%;
     margin: 10px auto;
-} */
+}
 
-/* .product-card {
+.product-card {
   
     border-radius: 8px;
     padding: 16px;
@@ -106,4 +114,4 @@
 .product-price {
     font-weight: 200;
     color: #333;
-} */
+}

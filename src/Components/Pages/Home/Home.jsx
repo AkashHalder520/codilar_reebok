@@ -9,10 +9,12 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "./Home.css"
 import Productcarousle from "./Productcarousle";
+import Toast from '../../common/Toast/Toast';
 
 function Home() {
     return (
         <>
+        {/* <Toast message={"hello this is my tostify"}/> */}
             <div className="homepage">
                 <div className="top-carousle">
                     <Swiper

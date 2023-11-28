@@ -1,98 +1,102 @@
 import React, { useEffect, useState } from 'react';
 
 
-import styles from "./Productcarousle.module.css"
+// import "./Productcarousle.module.css"
 import { Link } from 'react-router-dom';
+import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import 'swiper/css/bundle';
+import "./Productcarousle.css"
+
 function Productcarousle() {
 
-  const [productData, setproductData] = useState([])
+  const [productData, setproductData] = useState([]);
   useEffect(() => {
     fetch('graphql', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
-        query: `{
-        products(search: "", pageSize: 10) {
-          items {
-            id
-            name
-            sku
-            url_key
-            price {
-              regularPrice {
-                amount {
-                  value
-                  currency
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          {
+            products(search: "", pageSize: 10) {
+              items {
+                id
+                name
+                sku
+                url_key
+                price {
+                  regularPrice {
+                    amount {
+                      value
+                      currency
+                    }
+                  }
+                }
+                image {
+                  url
                 }
               }
             }
-            image {
-              url
-            }
           }
-        }
-      }`
-      })
+        `,
+      }),
     })
-      .then(res => res.json())
-      .then(res => setproductData(res?.data.products.items));
-
-
-  }, [])
-
-  console.log(productData.length)
+      .then((res) => res.json())
+      .then((res) => setproductData(res?.data.products.items));
+  }, []);
 
   const productImage = [
-    "https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg",
-    "https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0798_1.jpg",
-    "https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0794_1.jpg",
-    "https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/t/ht3703_1.jpg",
-    "https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/s/hs9141_1.jpg",
-    "https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg",
-    "https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0798_1.jpg",
-    "https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0794_1.jpg",
-    "https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/t/ht3703_1.jpg",
-    "https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/s/hs9141_1.jpg",
+    'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg',
+    'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0798_1.jpg',
+    'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0794_1.jpg',
+    'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/t/ht3703_1.jpg',
+    'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/s/hs9141_1.jpg',
+    'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg',
+    'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0798_1.jpg',
+    'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0794_1.jpg',
+    'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/t/ht3703_1.jpg',
+    'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/s/hs9141_1.jpg',
+  ];
 
-  ]
+  // const [currentSlide, setCurrentSlide] = useState(0);
+  // const totalSlides = Math.ceil(productData.length / 1);
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  // const nextSlide = () => {
+  //   setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
+  // };
 
-  const productsPerPage = 5;
-  const totalSlides = Math.ceil(productData.length / productsPerPage);
+  // const prevSlide = () => {
+  //   setCurrentSlide((prevSlide) => (prevSlide === 0 ? totalSlides - 1 : prevSlide - 1));
+  // };
 
-  const nextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
-  };
+  // const renderProductsInSlide = () => {
+  //   return productData.map((product, index) => (
+  //     <div
+  //       key={index}
+  //       className={`${styles['product-item']} ${index < currentSlide * 1 || index >= (currentSlide + 1) * 1 ? styles['hidden'] : ''}`}
+  //     >
+  //       <img src={productImage[index]} alt={product.name} />
+  //       <h3>{product.name}</h3>
+  //       <p className={styles['product-price']}>
+  //         ${product?.price?.regularPrice?.amount?.currency} {product?.price?.regularPrice?.amount?.value}
+  //       </p>
+  //     </div>
+  //   ));
+  // };
 
-  const prevSlide = () => {
-    setCurrentSlide((prevSlide) =>
-      prevSlide === 0 ? totalSlides - 1 : prevSlide - 1
-    );
-  };
 
-  const renderProductsInSlide = () => {
-    const start = currentSlide * productsPerPage;
-    const end = start + productsPerPage;
-
-    return productData.slice(start, end).map((product, index) => (
-      <div key={index} className="product-item">
-        <img src={productImage[index]} alt={product.name} />
-        <h3>{product.name}</h3>
-        <p className="product-price">${product?.price?.regularPrice?.amount?.currency} {product?.price?.regularPrice?.amount?.value}</p>
-      </div>
-    ));
-  };
 
 
   return (<>
     {/*<h2>NEW ARRIVALS</h2>*/}
-    <div className={styles['product-slider']}>
-        <div className={styles['viewall']}>
-          <Link to="/productList">View all</Link>
-        </div>
-        <button onClick={prevSlide}>Previous</button>
-        <div className={styles['slider-container']}>{renderProductsInSlide()}</div>
-        <button onClick={nextSlide}>Next</button>
-      </div>
+    
+    {/* <div className={styles['product-slider']}>
+      
+      <button onClick={prevSlide}>Previous</button>
+      <div className={styles['slider-container']}>{renderProductsInSlide()}</div>
+      <button onClick={nextSlide}>Next</button>
+    </div> */}
 
     {/* <div className="product-slider">
       <div className="viewall">
@@ -105,8 +109,12 @@ function Productcarousle() {
 
 
 
+  <div className="product-slider">
+  <div className='viewall'>
+        <Link to="/productList">View all</Link>
+      </div>
+    <Swiper
 
-{/* <Swiper
 
         // install Swiper modules
         modules={[Navigation, Pagination, A11y, Autoplay]}
@@ -167,7 +175,8 @@ function Productcarousle() {
               </>);
             })}
           </>) : ("")}
-      </Swiper> */}
+      </Swiper>
+      </div>
 
   </>);
 }
