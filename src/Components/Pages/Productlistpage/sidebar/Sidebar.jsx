@@ -3,9 +3,10 @@ import { IoIosCloseCircleOutline } from 'react-icons/io'
 import styles from "./Sidebar.module.css"
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css';
-import { useDispatch } from 'react-redux';
-import { setPriceRangeRedux } from '../../../Redux/Products/ProductPriceFilterSlice'
+import { useDispatch, useSelector } from 'react-redux';
+import { ProductPriceFilter } from '../../../Redux/Products/ProductPriceFilterSlice'
 import { FaMinus, FaPlus } from 'react-icons/fa';
+import Productlist from '../../Pages/Productlistpage/Productlist';
 export default function Sidebar({ toggle, toggleMenu }) {
   const dispatch = useDispatch()
   const [priceRange, setPriceRange] = useState([0, 100]); // Initial price range values
@@ -26,7 +27,7 @@ export default function Sidebar({ toggle, toggleMenu }) {
           <Slider
             range
             min={0}
-            max={100}
+            max={1000}
             value={priceRange}
             onChange={handleSliderChange}
           />
@@ -41,11 +42,16 @@ export default function Sidebar({ toggle, toggleMenu }) {
   }
 
   //sending the current value and final value to redux slice
+  // let min=priceRange[0];
+  // let max=priceRange[1];
+console.log("slider price range",priceRange);
   useEffect(() => {
-    dispatch(setPriceRangeRedux(priceRange))
+    dispatch(ProductPriceFilter(priceRange))
   }, [priceRange])
+  
 
 
+// console.log("asdfasdf",priceRange)
   return (
     <>
       <div className={toggle ? styles.sidenavopen : styles.sidenav}>
