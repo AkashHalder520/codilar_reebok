@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import "./Productlist.css";
 import { useDispatch, useSelector } from "react-redux";
 import { productlist } from "../../../Redux/Products/Productlistslice";
-import Sidebar from "../../common/sidebar/Sidebar";
+import Sidebar from "./sidebar/Sidebar";
 import { Link } from "react-router-dom";
 
 function Productlist(props) {
@@ -22,20 +22,22 @@ function Productlist(props) {
   
 
   const dispatch = useDispatch();
-  const { productsData, status, errorMessage } = useSelector((state) => state.products);
-console.log("status_plp",status);
+  const { productsData, status, errorMessage } = useSelector((state) => state.productsfilter);
+  //fetching filtered data
+  // const priceFilterData = useSelector((state) => state.productsfilter);
+console.log("filterdata",productsData);
+// console.log("status_plp",status);
 
 
   useEffect(() => {
     dispatch(productlist());
   }, []);
+
   
 
   const productsPerPage = 12;// for displayin number of products in a single page
-
   const indexOfLastProduct = currentPage * productsPerPage; // eg:-2*12 =24(this is the last index) for the 2nd page
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;// eg 24-12=12(this is the first index) for 2nd page 
-
   const currentProducts =
     productsData?.data?.products?.items && // &&  is is used if the data is comming 
     productsData.data.products.items.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -44,6 +46,8 @@ console.log(currentProducts);
 if (status=='rejected'){
   console.log("errorstate",errorMessage);
   }
+
+
   const renderProducts = () => { 
     return (
     <>
@@ -73,6 +77,7 @@ if (status=='rejected'){
       </>
     );
   };
+
 
   const pageNumbers = [];
   const totalPages = Math.ceil(productsData?.data?.products?.items?.length / productsPerPage);

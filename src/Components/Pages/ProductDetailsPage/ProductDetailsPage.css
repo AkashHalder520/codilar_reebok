@@ -54,7 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 4vw;
+    width: 10vw;
     height: 50px;
     border-collapse: collapse;
 }
@@ -149,3 +149,37 @@
 .desc-r img {
     width: 100%;
 }
+
+@media only screen and (max-width: 768px) {
+    .pdp-main {
+      flex-direction: column;
+    }
+  
+    .pdp-details {
+      width: 100%; /* Adjust the width as needed */
+      padding: 2%;
+    }
+  
+    .pdp-img {
+      width: 100%;
+    }
+  
+    .pdp-sub-img {
+      flex-direction: column; /* Stack sub-images vertically */
+    }
+  
+    .size-details {
+      
+      margin-top: 5%; /* Adjust the margin as needed */
+    }
+    .adtobag{
+        width: 50vw;
+    }
+    .size-chart{
+        gap: 5%;
+    }
+    .desc-title ,.desc-main , .hidden{
+    width: 80%;
+    }
+  }
+  

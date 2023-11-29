@@ -4,9 +4,9 @@ import styles from "./Sidebar.module.css"
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { ProductPriceFilter } from '../../../Redux/Products/ProductPriceFilterSlice'
+import { ProductPriceFilter } from '../../../../Redux/Products/ProductPriceFilterSlice'
 import { FaMinus, FaPlus } from 'react-icons/fa';
-import Productlist from '../../Pages/Productlistpage/Productlist';
+import Productlist from '../Productlist';
 export default function Sidebar({ toggle, toggleMenu }) {
   const dispatch = useDispatch()
   const [priceRange, setPriceRange] = useState([0, 100]); // Initial price range values

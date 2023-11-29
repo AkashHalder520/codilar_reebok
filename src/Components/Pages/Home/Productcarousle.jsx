@@ -127,6 +127,10 @@ function Productcarousle() {
             width: 300,
             slidesPerView: 1,
           },
+          450:{
+            width:350,
+            slidesPerView: 1
+          },
           640: {
             width: 640,
             slidesPerView: 2,

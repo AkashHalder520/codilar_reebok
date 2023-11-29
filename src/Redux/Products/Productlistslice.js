@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+
 
 const Query = `{
     products(search: "", pageSize: 100) {
@@ -29,18 +29,7 @@ const initialState = {
   errorMessage: "",
 }
 
-// export const productlist = createAsyncThunk(
-//   "Ecom_productlist",
-//   async (_,{ rejectWithValue }) => {
-//     try {
-//       const res = await axios.post('graphqlc', { query: Query });
-//       return res?.data;
-//     } catch (error) {
-//       // If an error occurs, the promise is rejected, and the rejected state will be executed.
-//       return rejectWithValue(error.message)
-//     }
-//   }
-// );
+
 
 export const productlist = createAsyncThunk(
   "Ecom_productlist",
@@ -67,32 +56,6 @@ export const productlist = createAsyncThunk(
     }
   }
 );
-
-
-// export const productlist = createAsyncThunk(
-//   "Ecom_productlist",
-//   async () => {
-//     try {
-//       const response = await fetch('graphqlc', {
-//         method: 'POST',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({ query: Query }),
-//       });
-
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! Status: ${response.status}`);
-//       }
-
-//       const data = await response.json();
-//       return data;
-//     } catch (error) {
-//       // If an error occurs, the promise is rejected, and the rejected state will be executed.
-//       return error;
-//     }
-//   }
-// );
 
 export const Productlistslice = createSlice({
   name: "productlist_ecom",
