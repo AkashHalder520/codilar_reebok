@@ -21,17 +21,18 @@ function Productlist(props) {
 
   
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { productsData, status, errorMessage } = useSelector((state) => state.productsfilter);
   //fetching filtered data
   // const priceFilterData = useSelector((state) => state.productsfilter);
 console.log("filterdata",productsData);
 // console.log("status_plp",status);
+console.log("product data:--",productsData);
 
 
-  useEffect(() => {
-    dispatch(productlist());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(productlist());
+  // }, []);
 
   
 
@@ -41,7 +42,7 @@ console.log("filterdata",productsData);
   const currentProducts =
     productsData?.data?.products?.items && // &&  is is used if the data is comming 
     productsData.data.products.items.slice(indexOfFirstProduct, indexOfLastProduct);
-console.log(currentProducts);
+// console.log(currentProducts);
 
 if (status=='rejected'){
   console.log("errorstate",errorMessage);

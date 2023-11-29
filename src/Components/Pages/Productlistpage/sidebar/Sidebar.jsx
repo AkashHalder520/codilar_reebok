@@ -44,11 +44,25 @@ export default function Sidebar({ toggle, toggleMenu }) {
   //sending the current value and final value to redux slice
   // let min=priceRange[0];
   // let max=priceRange[1];
-console.log("slider price range",priceRange);
-  useEffect(() => {
-    dispatch(ProductPriceFilter(priceRange))
-  }, [priceRange])
+// console.log("slider price range",priceRange);
+//   useEffect(() => {
+//     dispatch(ProductPriceFilter(priceRange))
+//   }, [priceRange])
   
+
+  useEffect(() => {
+    let timeoutId;
+
+    // Set a timeout to dispatch the action after 1000 milliseconds (1 second)
+    timeoutId = setTimeout(() => {
+      dispatch(ProductPriceFilter(priceRange));
+    }, 1000);
+
+    // Clear the timeout if the component unmounts or if priceRange changes
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [priceRange]);
 
 
 // console.log("asdfasdf",priceRange)
