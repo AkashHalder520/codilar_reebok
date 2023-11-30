@@ -4,13 +4,14 @@ import logo from '../../../image/reebok-logo-white.jpeg'
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { FaRegHeart, FaSearch } from "react-icons/fa";
 import { HiViewList } from "react-icons/hi";
+import MiniCart from './MiniCart/MiniCart';
 
 
 export default function Header() {
 
 
     const [toggle, setToggle] = useState(false);
-    
+
     const toggleMenu = (event) => {
         event.preventDefault(); // Prevent the default behavior of the button
         setToggle(!toggle);
@@ -18,10 +19,18 @@ export default function Header() {
     };
     const [innerWidth, setInnerWidth] = useState();
     // console.log(innerWidth);
-            
+
     const [headerData, setheaderData] = useState([])
-    
- 
+
+    //toggle function for cartbtn
+    const [cartBtnToggle, setcartBtnToggle] = useState(true)
+    const handelcartToggleBtn = () => {
+
+        setcartBtnToggle(!cartBtnToggle);
+        console.log("CartToggleBtn:", cartBtnToggle);
+    }
+
+
     useEffect(() => {
         try {
             fetch('/graphql', {
@@ -60,59 +69,59 @@ export default function Header() {
                     }`
                 })
             })
-            .then(res => {
-                console.log(res, 'then 1 category');
-                if (!res.ok) {
-                    throw new Error(`HTTP error! Status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .then((res) => {
-                console.log(res, 'res categoryList');
-                if (res?.data?.categoryList) {
-                    setheaderData(res.data.categoryList[0]?.children);
-                } else {
-                    throw new Error('Invalid response format');
-                }
-            })
-            .catch((error) => {
-                console.error('Error fetching data:', error);
-                // Handle the error as needed
-            });
+                .then(res => {
+                    console.log(res, 'then 1 category');
+                    if (!res.ok) {
+                        throw new Error(`HTTP error! Status: ${res.status}`);
+                    }
+                    return res.json();
+                })
+                .then((res) => {
+                    console.log(res, 'res categoryList');
+                    if (res?.data?.categoryList) {
+                        setheaderData(res.data.categoryList[0]?.children);
+                    } else {
+                        throw new Error('Invalid response format');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error fetching data:', error);
+                    // Handle the error as needed
+                });
         } catch (error) {
             console.error('Error in useEffect:', error);
             // Handle the error as needed
         }
     }, []);
-    
-    
 
 
-// console.log("header page nav",headerData);
 
-    useEffect(()=>{
+
+    // console.log("header page nav",headerData);
+
+    useEffect(() => {
         // Function to update innerWidth state
-    const handleResize = () => {
-        setInnerWidth(window.innerWidth);
-    };
-    
-    // Add event listener to window resize event
-    window.addEventListener('resize', handleResize);
-    
-    // // Clean up the event listener when the component is unmounted
-    return () => {
-        window.removeEventListener('resize', handleResize);
-    };
-    },[])
-    
-    
+        const handleResize = () => {
+            setInnerWidth(window.innerWidth);
+        };
+
+        // Add event listener to window resize event
+        window.addEventListener('resize', handleResize);
+
+        // // Clean up the event listener when the component is unmounted
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, [])
+
+
     useEffect(() => {
         // Check the innerWidth and update the toggle state
         if (innerWidth > 900) {
-          setToggle(false);
+            setToggle(false);
 
         }
-      }, [innerWidth]);// 
+    }, [innerWidth]);// 
 
 
     const renderDropdown = (dropdownData) => {
@@ -186,7 +195,7 @@ export default function Header() {
 
                     <div className="user-links">
                         <a href="#"><FaRegHeart size={20} /> </a>
-                        <a href="#"><MdOutlineShoppingBag size={20} /></a>
+                        <button onClick={handelcartToggleBtn}><MdOutlineShoppingBag size={20} /></button>
                     </div>
 
                 </div>
@@ -212,6 +221,10 @@ export default function Header() {
 
                     </ul>
                 </div>
+
+                <MiniCart cartBtnToggle={cartBtnToggle} />
+
+
 
             </div>
         </>

@@ -19,22 +19,22 @@ function Productlist(props) {
 
   const [currentPage, setCurrentPage] = useState(1);// current page initially 1
 
-  
+
 
   // const dispatch = useDispatch();
   const { productsData, status, errorMessage } = useSelector((state) => state.productsfilter);
   //fetching filtered data
   // const priceFilterData = useSelector((state) => state.productsfilter);
-console.log("filterdata",productsData);
-// console.log("status_plp",status);
-console.log("product data:--",productsData);
+  console.log("filterdata", productsData);
+  console.log("status_plp", status);
+  // console.log("product data:--",productsData);
 
 
   // useEffect(() => {
   //   dispatch(productlist());
   // }, []);
 
-  
+
 
   const productsPerPage = 12;// for displayin number of products in a single page
   const indexOfLastProduct = currentPage * productsPerPage; // eg:-2*12 =24(this is the last index) for the 2nd page
@@ -42,38 +42,38 @@ console.log("product data:--",productsData);
   const currentProducts =
     productsData?.data?.products?.items && // &&  is is used if the data is comming 
     productsData.data.products.items.slice(indexOfFirstProduct, indexOfLastProduct);
-// console.log(currentProducts);
+  console.log(currentProducts);
 
-if (status=='rejected'){
-  console.log("errorstate",errorMessage);
-  }
+  // if (status=='failed'){
+  //   console.log("errorstate",errorMessage);
+  //   }
 
 
-  const renderProducts = () => { 
+  const renderProducts = () => {
     return (
-    <>
-    
-    {
-      
-      currentProducts &&
-      currentProducts.map((value, index) => (
-        <Link to={`/ProductDetailsPage/${value.url_key}`}>
-        <div key={index} className="plpcard">
-          <img
-            src="https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg"
-            alt="Denim Jeans"
-          />
-          <h1>{value.name}</h1>
-          <p className="price">
-            {value.price.regularPrice.amount.currency}
-            {value.price.regularPrice.amount.value}
-          </p>
-          <p>Some text about the jeans..</p>
-        </div>
-        </Link>
-      ))
-      
-  }
+      <>
+
+        {
+
+          currentProducts &&
+          currentProducts.map((value, index) => (
+            <Link to={`/ProductDetailsPage/${value.url_key}`}>
+              <div key={index} className="plpcard">
+                <img
+                  src="https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg"
+                  alt="Denim Jeans"
+                />
+                <h1>{value.name}</h1>
+                <p className="price">
+                  {value.price.regularPrice.amount.currency}
+                  {value.price.regularPrice.amount.value}
+                </p>
+                <p>Some text about the jeans..</p>
+              </div>
+            </Link>
+          ))
+
+        }
 
       </>
     );
@@ -105,14 +105,15 @@ if (status=='rejected'){
   const nextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
-    }}
+    }
+  }
 
 
   return (
     <>
-      
-        <Sidebar toggle={toggle} toggleMenu={toggleMenu}/>
-        {/* sending the initial toggle to other sidebar component and also passing the function */}
+
+      <Sidebar toggle={toggle} toggleMenu={toggleMenu} />
+      {/* sending the initial toggle to other sidebar component and also passing the function */}
 
 
       <div>
@@ -125,15 +126,18 @@ if (status=='rejected'){
           </div>
         </div>
 
-        <div className="plp_data">{ status=='rejected'? <h1>{errorMessage}</h1> : renderProducts()}</div>
+        <div className="plp_data">{status == 'failed' ?
+          <div id='errmsg'>
+            <h2>{errorMessage}</h2>
+          </div> : renderProducts()}</div>
 
         <div id="page-numbers">
           {renderPageNumbers} of {pageNumbers.length}
-        <button onClick={nextPage} disabled={currentPage === totalPages}>
+          <button onClick={nextPage} disabled={currentPage === totalPages}>
             Next
           </button>
         </div>
-        
+
       </div>
     </>
   );

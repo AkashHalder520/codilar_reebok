@@ -12,18 +12,18 @@ function ProductDetailsPage() {
         // getPdpDetails();
         dispatch(pdp_page(url_key));
     }, []);
-    const { pdpData, status } = useSelector((state) => state.pdppage);
+    const { pdpData, status, errorMessage } = useSelector((state) => state.pdppage);
     console.log(pdpData, 'pdpData', "status", status);
     const { url_key } = useParams();
 
-    console.log(url_key);
+    // console.log(url_key);
 
     const [toggel, setToggle] = useState(false)
     const handleToggel = () => {
         setToggle(!toggel)
         console.log(toggel);
     }
-// console.log(pdpData?.data?.products?.items[0]?.name,"heasdf")
+    // console.log(pdpData?.data?.products?.items[0]?.name,"heasdf")
     const renderDescription = () => {
         return (
             <>
@@ -38,7 +38,14 @@ function ProductDetailsPage() {
         )
     }
     return (
-        <>
+        <>{status == "rejected" ?
+            <div id='errmsg'> 
+                <h2>{errorMessage}</h2>
+            </div>
+
+
+            :
+
             <div className='pdp_page'>
                 <div className='pdp-main'>
                     <div className='pdp-img'>
@@ -80,10 +87,10 @@ function ProductDetailsPage() {
                 </div>
 
                 <div className="desc">
-                    
+
                     <div className="desc-title">
                         <div >Description</div>
-                        <button onClick={handleToggel}>{toggel?<FaMinus size={20} />:<FaPlus size={20}/>}</button>
+                        <button onClick={handleToggel}>{toggel ? <FaMinus size={20} /> : <FaPlus size={20} />}</button>
                     </div>
 
                     <div className={toggel ? 'desc-main' : 'hidden'}>
@@ -97,7 +104,8 @@ function ProductDetailsPage() {
                     </div>
                 </div>
 
-            </div>
+            </div>}
+
         </>
     )
 }

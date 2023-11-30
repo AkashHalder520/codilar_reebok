@@ -90,7 +90,7 @@ function Productcarousle() {
 
   return (<>
     {/*<h2>NEW ARRIVALS</h2>*/}
-    
+
     {/* <div className={styles['product-slider']}>
       
       <button onClick={prevSlide}>Previous</button>
@@ -109,11 +109,11 @@ function Productcarousle() {
 
 
 
-  <div className="product-slider">
-  <div className='viewall'>
+    <div className="product-slider">
+      <div className='viewall'>
         <Link to="/productList">View all</Link>
       </div>
-    <Swiper
+      <Swiper
 
 
         // install Swiper modules
@@ -127,8 +127,8 @@ function Productcarousle() {
             width: 300,
             slidesPerView: 1,
           },
-          450:{
-            width:350,
+          450: {
+            width: 350,
             slidesPerView: 1
           },
           640: {
@@ -178,9 +178,15 @@ function Productcarousle() {
                 </SwiperSlide>
               </>);
             })}
-          </>) : ("")}
+          </>) : (
+
+          <div id='errmsg'>
+            <h2>Failed to fetch data from api</h2>
+          </div>
+
+        )}
       </Swiper>
-      </div>
+    </div>
 
   </>);
 }

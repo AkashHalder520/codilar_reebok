@@ -40,6 +40,7 @@ export const ProductPriceFilter = createAsyncThunk(
                 id
                 name
                 sku
+                url_key
                 price {
                   regularPrice {
                     amount {
@@ -93,7 +94,8 @@ export const ProductPriceFilterSlice = createSlice({
         })
         .addCase(ProductPriceFilter.rejected, (state, action) => {
           state.status = 'failed';
-          state.errorMessage = action.error.message;
+          // state.errorMessage = action.error.message;
+          state.errorMessage="Error in fetching Data from API , Please try again after some time"
         });
   },
 });
