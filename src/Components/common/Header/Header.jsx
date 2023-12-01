@@ -5,6 +5,7 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import { FaRegHeart, FaSearch } from "react-icons/fa";
 import { HiViewList } from "react-icons/hi";
 import MiniCart from './MiniCart/MiniCart';
+import { Link } from 'react-router-dom';
 
 
 export default function Header() {
@@ -161,9 +162,12 @@ export default function Header() {
                 </div>
                 <div className="header-main">
                     <button className="toggleButton" onClick={toggleMenu}><HiViewList size={20} /></button>
+                    <Link to="/">
                     <div className="logo">
                         <img src={logo} alt='Logo'></img>
                     </div>
+                    </Link>
+                    
 
 
                     <ul className="nav">

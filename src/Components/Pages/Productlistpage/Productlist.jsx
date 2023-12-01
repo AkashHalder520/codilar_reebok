@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import "./Productlist.css";
 import { useDispatch, useSelector } from "react-redux";
-import { productlist } from "../../../Redux/Products/Productlistslice";
+// import { productlist } from "../../../Redux/Products/Productlistslice";
 import Sidebar from "./sidebar/Sidebar";
 import { Link } from "react-router-dom";
 
