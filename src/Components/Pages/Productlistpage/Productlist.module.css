@@ -1,0 +1,166 @@
+.plp_heading {
+  display: flex;
+  margin: 1% 15%;
+  justify-content: space-between;
+  align-items: center;
+}
+.plp_title h1{
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+.fliter button {
+  padding: 10px;
+  background-color: snow;
+  color: black;
+  border: 1px solid black;
+  cursor: pointer;
+}
+a{
+  text-decoration: none;
+  color: black;
+}
+/* ///////display product */
+ .plp_data {
+  display: flex;
+  flex-wrap: wrap; 
+/* Allow items to wrap to the next line */
+ /* /* justify-content: center; */
+  max-width: 65%;
+  margin: 0 auto; 
+} 
+
+/* .plpcard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  height: 400px;
+  margin: 10px;
+  text-align: center;
+  font-family: arial;
+  font-size: 10px; */
+/* background-color: gray; */
+/* } */
+
+/* .plpcard img {
+  width: 100%
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+} */
+
+/* .plpcard button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+} */
+
+/* .plpcard button:hover {
+  opacity: 0.7;
+} */
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+.card {
+  margin: 5px;
+  /* position: relative; */
+  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+  transition: 0.3s;
+  
+}
+.cardimg{
+  position: relative;
+}
+.card img{
+  object-fit: contain;
+    width: 100%;
+}
+
+.card:hover {
+  /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); */
+  border: 1px solid rgb(56, 53, 53);
+
+  .miniimage {
+    display: block;
+  }
+
+
+  .container {
+    gap: 10px;
+  }
+}
+
+.container {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-left: 1%;
+  padding-bottom: 2%;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 84px;
+  height: 28px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  bottom: 5px;
+  left: 4px;
+}
+
+.miniimage {
+  width: 50px;
+  height: 50px;
+  display: none;
+
+}
+
+.miniimage img {
+  border-bottom: 3px solid black;
+}
+
+.title {
+  font-size: 11px;
+  color: rgb(138, 136, 136);
+  font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+/* /////////sidebar///////////// */
+
+
+
+/* *************pagination design***************************** */
+#page-numbers {
+  display: flex;
+  justify-content: center;
+}

@@ -1,7 +1,9 @@
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import React, { useEffect, useState } from "react";
 
-import "./Productlist.css";
+// import "./Productlist.css";
+import styles from './Productlist.module.css';
+
 import { useDispatch, useSelector } from "react-redux";
 // import { productlist } from "../../../Redux/Products/Productlistslice";
 import Sidebar from "./sidebar/Sidebar";
@@ -50,6 +52,22 @@ function Productlist(props) {
 
 
   const renderProducts = () => {
+    const productImage = [
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0798_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0794_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/t/ht3703_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/s/hs9141_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0798_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0794_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/t/ht3703_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/s/hs9141_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/h/s/hs9141_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0798_1.jpg',
+      'https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/i/ii0794_1.jpg',
+    ];
     return (
       <>
 
@@ -58,18 +76,25 @@ function Productlist(props) {
           currentProducts &&
           currentProducts.map((value, index) => (
             <Link to={`/ProductDetailsPage/${value.url_key}`}>
-              <div key={index} className="plpcard">
-                <img
-                  src="https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg"
-                  alt="Denim Jeans"
-                />
-                <h1>{value.name}</h1>
-                <p className="price">
-                  {value.price.regularPrice.amount.currency}
-                  {value.price.regularPrice.amount.value}
-                </p>
-                <p>Some text about the jeans..</p>
+            <div className={styles.card}>
+              <div className={styles.cardimg}>
+
+                <img src={productImage[index]} alt="Avatar" className={styles.productImage} />
+                <div className={styles.price}>
+                  <p>{value.price.regularPrice.amount.currency} {value.price.regularPrice.amount.value}</p>
+                </div>
               </div>
+
+
+              <div className={styles.container}>
+                <div className={styles.miniimage}>
+                  <img src="https://www.reebok.ae/media/catalog/product/cache/db19b5fd0fc44ac5bd08c7d29d518a2a/i/l/il4489_1.jpg" alt="Avatar" className={styles.miniimage} />
+                </div>
+                <p>1 Color</p>
+                <p>{value.name}</p>
+                <p className={styles.title}>Clothing</p>
+              </div>
+            </div>
             </Link>
           ))
 
@@ -117,27 +142,31 @@ function Productlist(props) {
 
 
       <div>
-        <div className="plp_heading">
-          <div className="plp_title">
+        <div className={styles.plp_heading}>
+          <div className={styles.plp_title}>
             <h1>NEW ARRIVALS</h1>
           </div>
-          <div className="fliter">
+          <div className={styles.fliter}>
             <button onClick={toggleMenu}>Filter & sort</button>
           </div>
         </div>
 
-        <div className="plp_data">{status == 'failed' ?
-          <div id='errmsg'>
-            <h2>{errorMessage}</h2>
-          </div> : renderProducts()}</div>
+        <div className={styles.plp_data}>
+          {status === 'failed' ? (
+            <div id="errmsg">
+              <h2>{errorMessage}</h2>
+            </div>
+          ) : (
+            renderProducts()
+          )}
+        </div>
 
-        <div id="page-numbers">
+        <div id={styles['page-numbers']}>
           {renderPageNumbers} of {pageNumbers.length}
           <button onClick={nextPage} disabled={currentPage === totalPages}>
             Next
           </button>
         </div>
-
       </div>
     </>
   );

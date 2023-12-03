@@ -23,6 +23,7 @@
 
 .title {
     margin-top: 20px;
+    font-size: 40px;
 }
 
 .price {
@@ -140,13 +141,21 @@
   }
 
 
-.desc-l {
+.descLeft {
     width: 30%;
+
 }
-.desc-r {
+.descLeft p{
+    font-size: 20px
+}
+.descLeft h1{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+.descRight {
     width: 70%;
 }
-.desc-r img {
+.descRight img {
     width: 100%;
 }
 

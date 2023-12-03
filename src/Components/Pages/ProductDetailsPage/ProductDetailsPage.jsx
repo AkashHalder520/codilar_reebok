@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+// import styles from './ProductDetailsPage.module.css';
 import "./ProductDetailsPage.css"
 import { useParams } from 'react-router-dom'
 import { FaMinus, FaPlus, FaRegHeart } from 'react-icons/fa';
@@ -27,11 +28,11 @@ function ProductDetailsPage() {
     const renderDescription = () => {
         return (
             <>
-                <div className="desc-l">
+                <div className="descLeft">
                     <h1>{pdpData?.data?.products?.items[0]?.name}</h1>
                     <p>Once you zip up in this reebok hoodie, you won't want to take it off. It's made from soft dreamblend cotton with built-in stretch. Sweat-wicking speedwick helps keep you cool and dry.</p>
                 </div>
-                <div className="desc-r">
+                <div className="descRight">
                     <img src="https://www.reebok.ae/media/catalog/product//i/l/il4489_1.jpg" alt="" />
                 </div>
             </>
