@@ -288,8 +288,7 @@ display: none;
     gap: 12px;
 }
 .mini-cart-product-img {
-    margin-left: 8%;
-    width: 80px;
+   width: 30%;
     background-color: #D2D6D0;
 }
 .mini-cart-product-img img{

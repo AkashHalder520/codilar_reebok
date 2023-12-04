@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { FaMinus, FaPlus, FaRegHeart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { pdp_page } from '../../../Redux/Products/PdpPageSlice';
+import { createcart } from '../../../Redux/Cart/CreateCart';
 // import Header from '../../common/Header/Header';
 function ProductDetailsPage() {
 
@@ -12,13 +13,33 @@ function ProductDetailsPage() {
     useEffect(() => {
         // getPdpDetails();
         dispatch(pdp_page(url_key));
+
     }, []);
     const { pdpData, status, errorMessage } = useSelector((state) => state.pdppage);
     console.log(pdpData, 'pdpData', "status", status);
     const { url_key } = useParams();
-
     // console.log(url_key);
+    useEffect(() => {
+        // Check if there is a cartId in local storage
+        const savedCartId = localStorage.getItem('cartId');
 
+        if (savedCartId) {
+            console.log('Using saved cartId from local storage:', savedCartId);
+        } else {
+            // If no cartId in local storage, create a new cart
+            dispatch(createcart());
+        }
+    }, []);
+    const { cartId } = useSelector((state) => state.createEmptyCart)
+    console.log("CartId =", cartId);
+
+    useEffect(() => {
+        // Save the cartId to local storage
+        localStorage.setItem('cartId', cartId);
+        console.log('CartId =', cartId);
+      }, [cartId]);
+
+    
     const [toggel, setToggle] = useState(false)
     const handleToggel = () => {
         setToggle(!toggel)
@@ -40,7 +61,7 @@ function ProductDetailsPage() {
     }
     return (
         <>{status == "rejected" ?
-            <div id='errmsg'> 
+            <div id='errmsg'>
                 <h2>{errorMessage}</h2>
             </div>
 
