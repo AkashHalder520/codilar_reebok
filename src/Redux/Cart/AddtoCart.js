@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import GuestCartData from "../../GraphQl/GuestCartData";
+import AddConfProductToCart from "../../GraphQl/AddConfProductToCart";
 
-export const guestcart = createAsyncThunk(
-    "guest_cart_data",
+export const addtocart = createAsyncThunk(
+    "Add_To_cart",
     async (props) => {
-      console.log("guestcart",props);
+        console.log("reduxprops",props);
       try {
-        const data = await GuestCartData(props);
+        const data = await AddConfProductToCart(props);
         return data;
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -17,28 +17,28 @@ export const guestcart = createAsyncThunk(
   
   const initialState = {
     status: '',
-    guestCartData: [],
+    responseData: '',
     errorMessage: ''
   };
   
-  export const GuestCartSlice = createSlice({
-    name: "Guest_card_data",
+  export const AddToCartSlice = createSlice({
+    name: "Add_to_cart",
     initialState,
     reducers: {
   
     },
     extraReducers: (builder) => {
-      builder.addCase(guestcart.pending, (state, action) => {
+      builder.addCase(addtocart.pending, (state, action) => {
         state.status = 'loading'
         state.errorMessage=""
       })
-        .addCase(guestcart.fulfilled, (state, action) => {
+        .addCase(addtocart.fulfilled, (state, action) => {
           state.status = 'fullfilled'
-          state.guestCartData = action.payload;
-          console.log("Guest cart data",action.payload);
+          state.responseData= action.payload;
+          // console.log(action.payload);
           state.errorMessage="";
         })
-        .addCase(guestcart.rejected, (state, action) => {
+        .addCase(addtocart.rejected, (state, action) => {
           state.status = 'rejected'
           state.errorMessage="Failed to fetch data from server please come back after some time"
         })
@@ -46,4 +46,4 @@ export const guestcart = createAsyncThunk(
   
   
   })
-  export const{}= GuestCartSlice.actions
+  export const{}= AddToCartSlice.actions

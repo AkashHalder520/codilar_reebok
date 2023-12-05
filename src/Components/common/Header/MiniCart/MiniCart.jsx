@@ -5,11 +5,13 @@ import { guestcart } from '../../../../Redux/Cart/GuestCart'
 function MiniCart({ cartBtnToggle }) {
 
     const dispatch = useDispatch()
+    
     useEffect(() => {
-        dispatch(guestcart())
-    }, [])
+        let cartId = localStorage.getItem('cartId')
+        dispatch(guestcart(cartId))
+    },[])
     const { status, guestCartData, errorMessage } = useSelector((state) => state.guestCartData)
-    console.log("minicartjsx", guestCartData.cart);
+    // console.log("minicartjsx", guestCartData.cart);
 
     return (
         <>

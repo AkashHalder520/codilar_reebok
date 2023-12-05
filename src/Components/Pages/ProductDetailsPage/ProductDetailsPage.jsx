@@ -6,6 +6,7 @@ import { FaMinus, FaPlus, FaRegHeart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { pdp_page } from '../../../Redux/Products/PdpPageSlice';
 import { createcart } from '../../../Redux/Cart/CreateCart';
+import { addtocart } from '../../../Redux/Cart/AddtoCart';
 // import Header from '../../common/Header/Header';
 function ProductDetailsPage() {
 
@@ -15,6 +16,7 @@ function ProductDetailsPage() {
         dispatch(pdp_page(url_key));
 
     }, []);
+
     const { pdpData, status, errorMessage } = useSelector((state) => state.pdppage);
     console.log(pdpData, 'pdpData', "status", status);
     const { url_key } = useParams();
@@ -30,16 +32,37 @@ function ProductDetailsPage() {
             dispatch(createcart());
         }
     }, []);
-    const { cartId } = useSelector((state) => state.createEmptyCart)
-    console.log("CartId =", cartId);
 
-    useEffect(() => {
-        // Save the cartId to local storage
-        localStorage.setItem('cartId', cartId);
-        console.log('CartId =', cartId);
-      }, [cartId]);
+    let cartId = localStorage.getItem('cartId')
+    console.log("pdp lc", cartId);
 
-    
+    // State to store the selected option value
+    const [selectedValue, setSelectedValue] = useState({
+         cartid:`${cartId}`,
+        parentSku: "",
+        childSku: ""
+    });
+
+    // Event handler to update the selected value
+    const handleRadioChange = (event) => {
+        let value = event.target.value
+        setSelectedValue(prevState => ({
+            ...prevState,
+            childSku: value,
+            parentSku: pdpData?.data?.products?.items[0]?.sku,
+        }));
+    };
+
+
+    //for Add to bag button handeling
+
+    const handelAddToBag = (event) => {
+
+        
+        // setSelectedValue({...selectedValue,cartid:cartId})
+        dispatch(addtocart(selectedValue))
+    }
+    console.log("radiobutton value", selectedValue);
     const [toggel, setToggle] = useState(false)
     const handleToggel = () => {
         setToggle(!toggel)
@@ -93,16 +116,33 @@ function ProductDetailsPage() {
                                 <div>Size Chart</div>
                             </div>
                             <div className="size-chart">
-                                <div>S</div>
+                                {/* {pdpData?.data?.products?.items[0]?.variants?.map((value, index) => (
+                                    <select key={index} onChange={handleSelectChange}>
+                                        <option value={value?.product?.sku}>{value?.product?.name}</option>
+                                    </select>
+                                ))} */}
+                                {pdpData?.data?.products?.items[0]?.variants?.map((value, index) => (
+                                    <div key={index}>
+                                        <input
+                                            type="radio"
+                                            name="size"
+                                            value={value?.product?.sku}
+                                            onChange={handleRadioChange}
+                                        />
+                                        {value?.product?.name}
+                                    </div>
+                                ))}
+
+                                {/* <div>S</div>
                                 <div>M</div>
                                 <div>L</div>
                                 <div>XL</div>
-                                <div>2XL</div>
+                                <div>2XL</div> */}
                             </div>
                         </div>
 
                         <div className="add">
-                            <div className='adtobag'>Add To Bag</div>
+                            <button onClick={handelAddToBag}><div className='adtobag'>Add To Bag</div></button>
                             <div className='hearticon'><FaRegHeart size={40} /></div>
                         </div>
                     </div>

@@ -1,8 +1,9 @@
-const GuestCartData=async()=>{
+const GuestCartData=async(cartId)=>{
+  // console.log("guestcard", cartId);
     const requestBody = {
         query: `
         {
-            cart(cart_id: "ONIt59xmAJxi6Gx20NXDhgr2BC63wPWt") {
+            cart(cart_id: "${cartId}") {
               email
               billing_address {
                 city

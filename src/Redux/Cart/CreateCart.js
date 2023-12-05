@@ -67,7 +67,8 @@ export const CreateCartSlice = createSlice({
       .addCase(createcart.fulfilled, (state, action) => {
         state.status = 'fullfilled'
         state.cartId = action.payload;
-        // console.log(action.payload);
+        localStorage.setItem('cartId', state.cartId);
+        console.log("cartid create slice",action.payload);
         state.errorMessage="";
       })
       .addCase(createcart.rejected, (state, action) => {

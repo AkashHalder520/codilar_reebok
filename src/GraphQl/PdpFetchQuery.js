@@ -7,27 +7,64 @@ const PdpFetchQuery = async (url_key) => {
             },
             body: JSON.stringify({
                 query: `
-              {
-                products(search: "", pageSize: 100, filter: { url_key: { eq: "${url_key}" } }) {
-                  items {
-                    id
-                    name
-                    sku
-                    url_key
-                    price {
-                      regularPrice {
-                        amount {
-                          value
-                          currency
+                {
+                  products(filter: { url_key: { eq: "${url_key}" } }) {
+                    items {
+                      id
+                      attribute_set_id
+                      name
+                      sku
+                      __typename
+                      price_range{
+                        minimum_price{
+                          regular_price{
+                            value
+                            currency
+                          }
+                        }
+                      }
+                      ... on ConfigurableProduct {
+                        configurable_options {
+                          id
+                          attribute_uid
+                          label
+                          position
+                          use_default
+                          attribute_code
+                          product_id
+                          values {
+                            uid
+                            label
+                            
+                            }
+                         }
+                        
+                        variants {
+                          product {
+                            id
+                            name
+                            sku
+                            attribute_set_id
+                            price_range{
+                              minimum_price{
+                                regular_price{
+                                  value
+                                  currency
+                                }
+                              }
+                            }
+                          }
+                          attributes {
+                            uid
+                            label
+                            code
+                            value_index
+                          }
                         }
                       }
                     }
-                    image {
-                      url
-                    }
                   }
                 }
-              }
             `,
             }),
         });
