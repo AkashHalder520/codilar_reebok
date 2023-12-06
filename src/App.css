@@ -1,9 +1,15 @@
+@font-face {
+  font-family:NeuePlak ;
+  src: url(./Components/common/font/NeuePlakText-Regular.ttf);
+}
 *{
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Montserrat', sans-serif; */
+    font-family: NeuePlak;
 }
+
 .rc-slider-track, .rc-slider-tracks {
     position: absolute;
     height: 4px;
