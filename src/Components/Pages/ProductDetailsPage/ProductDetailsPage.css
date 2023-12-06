@@ -46,7 +46,7 @@
 
 .size-chart {
     margin-top: 10px;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     
 }
@@ -55,7 +55,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 10vw;
+    /* width: 10vw; */
     height: 50px;
     border-collapse: collapse;
 }
@@ -197,4 +197,30 @@
     display: flex;
     justify-content: center;
     margin: 100px;
+  }
+
+  /* radiobutton */
+
+  .radio-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #afafaf;
+  }
+  
+  .radio-input {
+    margin-right: 8px; /* Adjust as needed */
+    /* Hide the default radio button */
+    display: none;
+  }
+  
+  .label-content {
+    flex: 1;
+    padding: 8px; /* Adjust as needed */
+    border: 2px solid transparent; /* Initially transparent border */
+  }
+  
+  /* Apply styles when the radio button is checked */
+  .radio-input:checked + .label-content {
+    border-color: black; /* Change to the desired border color */
   }

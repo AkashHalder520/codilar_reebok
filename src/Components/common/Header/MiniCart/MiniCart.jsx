@@ -1,18 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { guestcart } from '../../../../Redux/Cart/GuestCart'
+import { deletefromcart } from '../../../../Redux/Cart/DeleteFromCart'
 
 function MiniCart({ cartBtnToggle }) {
 
     const dispatch = useDispatch()
-    
+   
     useEffect(() => {
         let cartId = localStorage.getItem('cartId')
         dispatch(guestcart(cartId))
     },[])
     const { status, guestCartData, errorMessage } = useSelector((state) => state.guestCartData)
-    // console.log("minicartjsx", guestCartData.cart);
+    console.log("minicartjsx", guestCartData.cart);
 
+    
+    const handelDeleteclick=(uid)=>{
+        console.log("onclick uid",uid);
+        let cartId = localStorage.getItem('cartId')
+        dispatch(deletefromcart({uid,cartId})).then(() => dispatch(guestcart(cartId))) .catch((error) => {
+            // Handle any error that occurs during the dispatch
+            console.error("Error deleting product:", error);
+          });
+
+    }
     return (
         <>
             <div className={cartBtnToggle ? "closeMiniCart" : "openMiniCart"}>
@@ -55,7 +66,7 @@ function MiniCart({ cartBtnToggle }) {
                                                             <input type="number" value={value?.quantity} />
                                                         </div>
                                                         <div className="mini-cart-edit">
-                                                            <button>Delete</button>
+                                                            <button onClick={()=>handelDeleteclick(value.uid)}>Delete</button>
                                                             {/* <button>aa</button> */}
                                                         </div>
                                                     </div>

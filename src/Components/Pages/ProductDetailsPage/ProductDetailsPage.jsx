@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { pdp_page } from '../../../Redux/Products/PdpPageSlice';
 import { createcart } from '../../../Redux/Cart/CreateCart';
 import { addtocart } from '../../../Redux/Cart/AddtoCart';
+import { guestcart } from '../../../Redux/Cart/GuestCart';
 // import Header from '../../common/Header/Header';
 function ProductDetailsPage() {
 
@@ -38,7 +39,7 @@ function ProductDetailsPage() {
 
     // State to store the selected option value
     const [selectedValue, setSelectedValue] = useState({
-         cartid:`${cartId}`,
+        cartid: `${cartId}`,
         parentSku: "",
         childSku: ""
     });
@@ -58,10 +59,15 @@ function ProductDetailsPage() {
 
     const handelAddToBag = (event) => {
 
-        
+        let cartId = localStorage.getItem('cartId')
+
         // setSelectedValue({...selectedValue,cartid:cartId})
-        dispatch(addtocart(selectedValue))
+        dispatch(addtocart(selectedValue)).then(() => dispatch(guestcart(cartId))).catch((error) => {
+            // Handle any error that occurs during the dispatch
+            console.error("Error deleting product:", error);
+        });
     }
+
     console.log("radiobutton value", selectedValue);
     const [toggel, setToggle] = useState(false)
     const handleToggel = () => {
@@ -122,15 +128,31 @@ function ProductDetailsPage() {
                                     </select>
                                 ))} */}
                                 {pdpData?.data?.products?.items[0]?.variants?.map((value, index) => (
-                                    <div key={index}>
+                                    // <div className="radio-container"  key={index}>
+                                    //     <input
+                                    //         type="radio"
+                                    //         name="size"
+                                    //         // id='radio1'
+
+                                    //         className="radio-input"
+                                    //         value={value?.product?.sku}
+                                    //         onChange={handleRadioChange}
+                                    //     />
+                                    //     <label for="radio1" class="radio-label">{value?.product?.name}</label>
+
+                                    // </div>
+                                    <label className="radio-container" key={index}>
                                         <input
                                             type="radio"
                                             name="size"
+                                            className="radio-input"
                                             value={value?.product?.sku}
                                             onChange={handleRadioChange}
                                         />
-                                        {value?.product?.name}
-                                    </div>
+                                        <div className="label-content">
+                                            {value?.product?.name}
+                                        </div>
+                                    </label>
                                 ))}
 
                                 {/* <div>S</div>

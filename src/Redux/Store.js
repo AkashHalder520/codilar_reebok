@@ -5,6 +5,7 @@ import { PdpPageSlice } from "./Products/PdpPageSlice";
 import { CreateCartSlice } from "./Cart/CreateCart";
 import { GuestCartSlice } from "./Cart/GuestCart";
 import { AddToCartSlice } from "./Cart/AddtoCart";
+import { DeleteFromCartSlice } from "./Cart/DeleteFromCart";
 
 export const Store= configureStore({
     reducer:{
@@ -13,7 +14,7 @@ export const Store= configureStore({
         pdppage:PdpPageSlice.reducer,
         createEmptyCart:CreateCartSlice.reducer,
         addToCart:AddToCartSlice.reducer,
-        guestCartData:GuestCartSlice.reducer
-
+        guestCartData:GuestCartSlice.reducer,
+        deleteCartData:DeleteFromCartSlice.reducer
     }
 })
