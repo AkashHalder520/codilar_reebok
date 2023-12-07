@@ -164,7 +164,7 @@ function ProductDetailsPage() {
                         </div>
 
                         <div className="add">
-                            <button onClick={handelAddToBag}><div className='adtobag'>Add To Bag</div></button>
+                            <button className="addtocartBtn" onClick={handelAddToBag}><div className='adtobag'>Add To Bag</div></button>
                             <div className='hearticon'><FaRegHeart size={40} /></div>
                         </div>
                     </div>

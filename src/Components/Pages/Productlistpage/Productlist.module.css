@@ -1,6 +1,6 @@
 .plp_heading {
   display: flex;
-  margin: 1% 15%;
+  margin:0.5% 10%;
   justify-content: space-between;
   align-items: center;
 }
@@ -16,9 +16,10 @@
   border: 1px solid black;
   cursor: pointer;
 }
-a{
+.linktag{
   text-decoration: none;
   color: black;
+width: 25%;
 }
 /* ///////display product */
  .plp_data {
@@ -26,7 +27,7 @@ a{
   flex-wrap: wrap; 
 /* Allow items to wrap to the next line */
  /* /* justify-content: center; */
-  max-width: 65%;
+  max-width: 80%;
   margin: 0 auto; 
 } 
 
@@ -79,7 +80,6 @@ a{
   /* position: relative; */
   /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
   transition: 0.3s;
-  
 }
 .cardimg{
   position: relative;

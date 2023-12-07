@@ -75,7 +75,7 @@ function Productlist(props) {
 
           currentProducts &&
           currentProducts.map((value, index) => (
-            <Link to={`/ProductDetailsPage/${value.url_key}`}>
+            <Link className={styles.linktag} to={`/ProductDetailsPage/${value.url_key}`}>
             <div className={styles.card}>
               <div className={styles.cardimg}>
 

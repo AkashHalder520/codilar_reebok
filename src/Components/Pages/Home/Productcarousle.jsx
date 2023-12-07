@@ -7,7 +7,9 @@ import { Navigation, Pagination, A11y, Autoplay } from "swiper/modules";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import 'swiper/css/bundle';
-import "./Productcarousle.css"
+
+import styles from "./Productcarousle.module.css"
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 function Productcarousle() {
 
@@ -109,18 +111,20 @@ function Productcarousle() {
 
 
 
-    <div className="product-slider">
-      <div className='viewall'>
+    <div className={styles.productSlider}>
+      <div className={styles.viewall}>
         <Link to="/productList">View all</Link>
       </div>
+      <div>
       <Swiper
 
 
         // install Swiper modules
         modules={[Navigation, Pagination, A11y, Autoplay]}
-        autoplay={true}
+        // autoplay={true}
         // slidesPerView={1}
-        navigation
+        // navigation
+        navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
         breakpoints={{
           // when window width is >= 300px
           300: {
@@ -133,21 +137,21 @@ function Productcarousle() {
           },
           640: {
             width: 640,
-            slidesPerView: 2,
+            slidesPerView: 1,
           },
           // when window width is >= 768px
           768: {
             width: 768,
-            slidesPerView: 3,
+            slidesPerView: 2,
           },
 
           900: {
             width: 900,
             slidesPerView: 4,
           },
-          1150: {
-            width: 1150,
-            slidesPerView: 5,
+          1920: {
+            width: 1920,
+            slidesPerView: 6,
           }
         }}
 
@@ -157,11 +161,11 @@ function Productcarousle() {
       >
         {productData?.length !== 0 ? (
           <>
-            {productData?.map((product, index) => {
+            {productData?.map((value, index) => {
               return (<>
                 <SwiperSlide>
-                  <Link to={`/ProductDetailsPage/${product.url_key}`}>
-                    <div className="product-card" key={index} >
+                  <Link className={styles.atag} to={`/ProductDetailsPage/${value.url_key}`}>
+                    {/* <div className="product-card" key={index} >
                       <img
                         src={productImage[index]}
                         alt="Product"
@@ -172,6 +176,22 @@ function Productcarousle() {
                         <p className="product-name">{product?.name}</p>
 
                         <p className="product-price">${product?.price?.regularPrice?.amount?.currency} {product?.price?.regularPrice?.amount?.value}</p>
+                      </div>
+                    </div> */}
+                    <div className={styles.card}>
+                      <div className={styles.cardimg}>
+
+                        <img src={productImage[index]} alt="Avatar" className={styles.productImage} />
+                        <div className={styles.price}>
+                          <p>{value.price.regularPrice.amount.currency} {value.price.regularPrice.amount.value}</p>
+                        </div>
+                      </div>
+
+
+                      <div className={styles.container}>
+
+                        <p>{value.name}</p>
+                        <p className={styles.title}>Clothing</p>
                       </div>
                     </div>
                   </Link>
@@ -186,8 +206,12 @@ function Productcarousle() {
 
         )}
       </Swiper>
-    </div>
+      </div>
+      <button className="arrow-left " id={styles.arrowLeft}><FaArrowLeft size={20} /></button>
+    <button className="arrow-right " id={styles.arrowRight}><FaArrowRight size={20} /></button>
 
+    </div>
+    
   </>);
 }
 

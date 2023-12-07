@@ -2,6 +2,10 @@
   font-family:NeuePlak ;
   src: url(./Components/common/font/NeuePlakText-Regular.ttf);
 }
+@font-face {
+  font-family:NeuePlakExtraBlack ;
+  src: url(./Components/common/font/NeuePlak-ExtraBlack.ttf);
+}
 *{
     margin:0;
     padding:0;
