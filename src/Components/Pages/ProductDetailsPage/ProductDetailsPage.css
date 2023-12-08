@@ -71,6 +71,7 @@
 }
 .addtocartBtn{
     border: none;
+    background: none;
 }
 .adtobag {
     display: flex;

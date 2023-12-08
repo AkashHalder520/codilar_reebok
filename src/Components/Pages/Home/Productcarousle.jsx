@@ -127,23 +127,23 @@ function Productcarousle() {
         navigation={{ nextEl: ".arrow-left", prevEl: ".arrow-right" }}
         breakpoints={{
           // when window width is >= 300px
-          300: {
-            width: 300,
-            slidesPerView: 1,
-          },
-          450: {
-            width: 350,
-            slidesPerView: 1
-          },
-          640: {
-            width: 640,
-            slidesPerView: 1,
-          },
-          // when window width is >= 768px
-          768: {
-            width: 768,
+          374: {
+            width: 374,
             slidesPerView: 2,
           },
+          // 450: {
+          //   width: 350,
+          //   slidesPerView: 3
+          // },
+          // 640: {
+          //   width: 640,
+          //   slidesPerView: 1,
+          // },
+          // // when window width is >= 768px
+          // 768: {
+          //   width: 768,
+          //   slidesPerView: 2,
+          // },
 
           900: {
             width: 900,

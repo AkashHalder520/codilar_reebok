@@ -23,9 +23,9 @@ function Home() {
                         spaceBetween={50}
                         slidesPerView={1}
                         navigation
-                        pagination={{clickable: true}}
-                        scrollbar={{draggable: true}}
-                        autoplay={true}
+                        // pagination={{clickable: true}}
+                        // scrollbar={{draggable: true}}
+                        // autoplay={true}
                     >
                         <SwiperSlide>
                             <img
@@ -81,7 +81,7 @@ function Home() {
                     <h2>BLACK NOVEMBER DEALS</h2>
                 </div>
 
-                <div className="First_card_section">
+                <div className="First_card_sectionBND">
 
                     <div className="card">
                         <img src="https://www.reebok.ae/media/wysiwyg/900-X-1200-TSHIRTS-UNDER-79_rev.gif" alt="image"/>

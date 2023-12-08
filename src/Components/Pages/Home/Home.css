@@ -10,7 +10,8 @@
 
 .links {
     display: flex;
-    gap: 10px; /* Adjust the value to set the desired space between buttons */
+    /* gap: 10px; Adjust the value to set the desired space between buttons */
+    flex-wrap: wrap;
 }
 
 .button-links button {
@@ -37,7 +38,32 @@
     display: flex;
     width: 80%;
     margin: 10px auto;
+    margin-top: 2%;
     gap: 0.5%
+    
+}
+
+.First_card_sectionBND {
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+    margin-top: 2%;
+    gap: 0.5%
+    
+}
+@media screen and (max-width: 767px) {
+    .First_card_sectionBND {
+        flex-direction: column;
+    }
+    .First_card_section{
+        flex-direction: column;
+        width: 100%;
+    }
+    .First_card_section .card img{
+        width:100%;
+        height: 140px;
+        object-fit: cover;
+    }
 }
 
 .card{
@@ -47,7 +73,8 @@
 
 }
 .card img{
-    width:100%
+    width:100%;
+  
 }
 
 .card span {

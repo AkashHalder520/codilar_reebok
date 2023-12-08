@@ -199,7 +199,7 @@ export default function Header() {
 
                     <div className="user-links">
                         <a href="#"><FaRegHeart size={20} /> </a>
-                        <button onClick={handelcartToggleBtn}><MdOutlineShoppingBag size={20} /></button>
+                        <button onClick={handelcartToggleBtn}><MdOutlineShoppingBag size={25} /></button>
                     </div>
 
                 </div>

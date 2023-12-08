@@ -6,6 +6,7 @@ import Productlist from './Components/Pages/Productlistpage/Productlist';
 import ProductDetailsPage from './Components/Pages/ProductDetailsPage/ProductDetailsPage';
 import OfflinePage from './Components/common/Offline';
 import Notfound from './Components/common/Notfound/Notfound';
+import Registration from './Components/Pages/Registration/Registration';
 
 const AppRoutes = ({ status }) => (
   <Routes>
@@ -21,6 +22,10 @@ const AppRoutes = ({ status }) => (
     <Route
       path="/ProductDetailsPage/:url_key"
       element={status ? <OfflinePage /> : <ProductDetailsPage />}
+    />
+    <Route
+      path="/Registration"
+      element={status ? <OfflinePage /> : <Registration />}
     />
     <Route
       path="*"

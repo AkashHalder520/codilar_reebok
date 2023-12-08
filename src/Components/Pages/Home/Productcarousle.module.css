@@ -27,72 +27,6 @@
 
 }
 
-/* .product-slider {
-    width: 80%;
-    margin: auto;
-    position: relative;
-  }
-  
-  .slider-container {
-    display: flex;
-    overflow: hidden;
-  }
-  
-  .product-item {
-    box-sizing: border-box;
-    width: 20%; 
-    padding: 10px;
-    text-align: center;
-    transition: transform 0.5s ease;
-  }
-  .hidden {
-    transform: translateX(100%); 
-    
-  }
-  .product-item img {
-    max-width: 100%;
-    height: auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  button {
-    cursor: pointer;
-    padding: 10px;
-    margin-top: 10px;
-  }
-  
-  /* Optional: Add styles for active slide or customize as needed */
-  /* .product-item.active {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-  }
-
-  @media (min-width: 576px) {
-    .product-item {
-      width: 50%; 
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .product-slider {
-      width: 70%;
-    }
-  }
-  
-  @media (min-width: 992px) {
-    .product-item {
-      width: 33.33%; 
-    }
-  }
-  
-  @media (min-width: 1200px) {
-    .product-item {
-      width: 20%; 
-    }
-  } */
- 
-
 
 
   .productSlider{
@@ -100,43 +34,12 @@
     margin: 10px 10%;
     position: relative;
 }
-
-/* .product-card {
-  
-    border-radius: 8px;
-    padding: 16px;
-    height: 300px;
-  
-    margin: auto;
-    width: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: #fff;
+@media screen and (max-width: 767px) {
+  .productSlider {
+    margin: 10px 0;
   }
-.product-card:hover{
-    border : 1px solid black;
 }
 
-.product-image {
-
-    object-fit: contain;
-    width: 100%;
-    margin-bottom: 12px;
-}
-
-
-
-.product-description {
-    color: #666;
-    margin-bottom: 12px;
-}
-
-.product-price {
-    font-weight: 200;
-    color: #333;
-} */
 .atag{
   text-decoration: none;
   color: black;
@@ -151,6 +54,7 @@
   /* position: relative; */
   /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
   transition: 0.3s;
+  
 
 }
 .cardimg{
@@ -191,7 +95,7 @@
   justify-content: center;
   width: 84px;
   height: 28px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255,0.6);
   position: absolute;
   bottom: 5px;
   left: 4px;

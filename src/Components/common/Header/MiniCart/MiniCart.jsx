@@ -15,7 +15,7 @@ function MiniCart({ cartBtnToggle }) {
     }, []);
 
     const { status, guestCartData, errorMessage } = useSelector((state) => state.guestCartData);
-    console.log("minicartjsx", guestCartData.cart);
+    console.log("minicartjsx", guestCartData.cart?.items?.length);
 
     const handelDeleteclick = (uid) => {
         console.log("onclick uid", uid);
@@ -29,7 +29,7 @@ function MiniCart({ cartBtnToggle }) {
     return (
         <>
             <div className={cartBtnToggle ? styles.closeMiniCart : styles.openMiniCart}>
-                {guestCartData.cart?.items?.length === 0 ? (
+                {guestCartData.cart?.items?.length === 0 || guestCartData.cart?.items === undefined  ? ( 
                     <p>No data in cart</p>
                 ) : (
                     <>

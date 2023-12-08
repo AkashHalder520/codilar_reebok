@@ -119,8 +119,14 @@ a:hover{
 .user-links {
     display: flex;
     align-items: center;
+   
+    justify-content: space-between;
+    width: 5%;
 }
-
+.user-links button{
+    background: none;
+    border: none;
+}
 .user-links a {
     text-decoration: none;
     color: black;
