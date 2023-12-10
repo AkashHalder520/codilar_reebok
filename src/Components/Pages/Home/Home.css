@@ -64,6 +64,15 @@
         height: 140px;
         object-fit: cover;
     }
+ 
+    .pagebuilder-mobile-hidden{
+        display: none !important;
+    }
+    .pagebuilder-mobile-view{
+        display: block !important;
+        width: 100%;
+    }
+
 }
 
 .card{
@@ -95,6 +104,9 @@
     display: block;
     margin: 0 auto;
   }
+  .pagebuilder-mobile-view{
+    display: none;
+  }
 /* *******   */
 
 /*****************/
@@ -105,6 +117,12 @@
     gap: 2vw;
 
 }
+@media screen and (max-width: 767px) {
+.homeparagraph{
+    display: block !important;
+}
+}
+
 .homeparagraph p{
     font-size: 13px;
     font-weight: 300;

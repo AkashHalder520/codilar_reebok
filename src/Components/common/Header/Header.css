@@ -26,6 +26,9 @@ a:hover{
     .frist-link {
         font-size: 10px; /* Adjust font size for smaller screens */
     }
+    .header-middle{
+        display: none !important;
+    }
 }
 
 .header-middle{
@@ -58,9 +61,9 @@ a:hover{
 .header-main {
     background-color: white;
     color:black;
-    padding: 10px 20px;
+    padding: 10px;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     max-width: 85%;
     margin: 0 auto;
@@ -119,9 +122,9 @@ a:hover{
 .user-links {
     display: flex;
     align-items: center;
-   
+   gap: 10px;
     justify-content: space-between;
-    width: 5%;
+   
 }
 .user-links button{
     background: none;
@@ -189,7 +192,7 @@ a:hover{
         display: flex; /* Hide the header in mobile view*/
     }
     .logo{
-        margin-left: 25%;
+        margin-left: 80%;
     }
     .sidebar{
         display: block;
