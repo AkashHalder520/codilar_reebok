@@ -7,6 +7,7 @@ import ProductDetailsPage from './Components/Pages/ProductDetailsPage/ProductDet
 import OfflinePage from './Components/common/Offline';
 import Notfound from './Components/common/Notfound/Notfound';
 import Registration from './Components/Pages/Registration/Registration';
+import Login from './Components/Pages/Login/Login';
 
 const AppRoutes = ({ status }) => (
   <Routes>
@@ -26,6 +27,10 @@ const AppRoutes = ({ status }) => (
     <Route
       path="/Registration"
       element={status ? <OfflinePage /> : <Registration />}
+    />
+     <Route
+      path="/Login"
+      element={status ? <OfflinePage /> : <Login />}
     />
     <Route
       path="*"

@@ -1,7 +1,112 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { TiTick } from "react-icons/ti";
 import styles from "./Registration.module.css"
+import { useDispatch } from 'react-redux';
+import { createnewcustomer } from '../../../Redux/Registration/RegistrationSlice';
+
 function Registration() {
+  const dispatch = useDispatch()
+  const [user, setUser] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    confirm_password: ""
+
+  })
+  const [error, setError] = useState({})
+  const handlechange = (event) => {
+    let name = event.target.name;
+    let value = event.target.value
+
+    
+    if (name === "first_name") {
+      if (value.length === 0) {
+        setError({ ...error, first_name: "@first name required" });
+        setUser({ ...user, first_name: "" });
+      } else {
+        setError({ ...error, first_name: "" });
+        setUser({ ...user, first_name: value });
+      }
+    }
+    if (name === "last_name") {
+      if (value.length === 0) {
+        setError({ ...error, last_name: "@first name required" });
+        setUser({ ...user, last_name: "" });
+      } else {
+        setError({ ...error, last_name: "" });
+        setUser({ ...user, last_name: value });
+      }
+    }
+    if (name === "email") {
+      if (value.length == 0) {
+        setError({ ...error, email: "enter the valid email" })
+        setUser({ ...user, email: "" })
+      } else {
+        setError({ ...error, email: "" });
+        setUser({ ...user, email: value });
+      }
+    }
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/;
+
+    if (name === "password") {
+      if (value.length === 0) {
+        setError({ ...error, password: "passwordrequired" });
+        setUser({ ...user, password: "" });
+      } else if (!passwordRegex.test(value)) {
+        setError({ ...error, password: "invalidpassword" });
+        setUser({ ...user, password: value });
+      } else {
+        setError({ ...error, password: "" });
+        setUser({ ...user, password: value });
+      }
+    }
+    if (name === "confirm_password") {
+      if (value.length === 0) {
+        setError({ ...error, confirm_password: "passwordrequired" });
+        setUser({ ...user, confirm_password: "" });
+      } else if (value !== user.password) {
+        setError({ ...error, confirm_password: "Passwords do not match" });
+        setUser({ ...user, confirm_password: value });
+      }
+      else {
+        setError({ ...error, confirm_password: "" });
+        setUser({ ...user, confirm_password: value });
+      }
+    }
+  }
+  const sendData = (e) => {
+    e.preventDefault();
+
+    // Check if there are no errors
+    if (
+      !error.first_name &&
+      !error.last_name &&
+      !error.email &&
+      !error.password &&
+      !error.confirm_password
+    ) {
+      // If no errors, dispatch the data
+      // let formData = new FormData();
+      // formData.append("first_name", user.first_name);
+      // formData.append("last_name", user.last_name);
+      // formData.append("email", user.email);
+      // formData.append("password", user.password);
+      const userData = {
+        first_name: user.first_name,
+        last_name: user.last_name,
+        email: user.email,
+        password: user.password,
+      };
+      // Dispatch the data using your dispatch function
+      console.log(userData);
+      dispatch(createnewcustomer(userData));
+    } else {
+      // If there are errors, you might want to handle them (e.g., show an error message)
+      console.log("Form has errors. Please fix them.");
+    }
+  };
+
   return (
     <>
       <div className={styles.wholePage}>
@@ -21,17 +126,21 @@ function Registration() {
           </div>
           <div className={styles.formSection}>
             <h3>YOUR NAME</h3>
-            <input type="text" placeholder='First Name' />
-            <input type="text" placeholder='Last Name' />
+            <input type="text" placeholder='First Name' name='first_name' onChange={handlechange} />
+            <span style={{ color: "red" }}>{error.first_name}</span>
+            <input type="text" placeholder='Last Name' name='last_name' onChange={handlechange} />
+            <span style={{ color: "red" }}>{error.last_name}</span>
             <input type="date" name="" id="" />
             <p>We collect date of birth to comply with our Reebok privacy policy. Plus you will get a surprise from us on your birthday!</p>
           </div>
           <div className={styles.formSection2}>
             <h3>LOGIN DETAILS</h3>
-            <input type="text" placeholder='Email' />
-            <input type="text" placeholder='Password' />
-            <input type="text" placeholder='Confirm Password' />
-
+            <input type="text" placeholder='Email' name='email' onChange={handlechange} />
+            <span style={{ color: "red" }}>{error.email}</span>
+            <input type="text" placeholder='Password' name='password' onChange={handlechange} />
+            <span style={{ color: "red" }}>{error.password}</span>
+            <input type="text" placeholder='Confirm Password' name='confirm_password' onChange={handlechange} />
+            <span style={{ color: "red" }}>{error.confirm_password}</span>
             <div className={styles.checkboxLabel}>
               <input type="checkbox" name="checkbox1" id="checkbox1" />
               <label htmlFor="checkbox1">
@@ -46,7 +155,7 @@ function Registration() {
 
           </div>
 
-          <button className={styles.buttonPrimary}>Join for Free</button>
+          <button className={styles.buttonPrimary} onClick={sendData}>Join for Free</button>
         </div>
 
         <div className={styles.rightPart}>

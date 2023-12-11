@@ -61,7 +61,7 @@ a:hover{
 .header-main {
     background-color: white;
     color:black;
-    padding: 10px;
+    /* padding: 10px; */
     display: flex;
     /* justify-content: space-between; */
     align-items: center;
@@ -146,6 +146,9 @@ a:hover{
 @media screen and (max-width: 570px) {
      .search-bar input {
         display: none; /* Hide the header in mobile view */
+    }
+    .header-main{
+        padding: 10px;
     }
 }
 
