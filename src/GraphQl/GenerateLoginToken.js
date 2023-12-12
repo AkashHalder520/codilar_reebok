@@ -4,8 +4,8 @@ const GenerateLoginToken = async (logindata) => {
         query: `
         mutation {
             generateCustomerToken(
-              email: ""
-              password: ""
+              email: "${logindata.email}"
+              password: "${logindata.password}"
             ) {
               token
             }

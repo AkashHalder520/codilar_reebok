@@ -8,6 +8,7 @@ import OfflinePage from './Components/common/Offline';
 import Notfound from './Components/common/Notfound/Notfound';
 import Registration from './Components/Pages/Registration/Registration';
 import Login from './Components/Pages/Login/Login';
+import YourBag from './Components/Pages/YourBag/YourBag';
 
 const AppRoutes = ({ status }) => (
   <Routes>
@@ -31,6 +32,10 @@ const AppRoutes = ({ status }) => (
      <Route
       path="/Login"
       element={status ? <OfflinePage /> : <Login />}
+    />
+    <Route
+      path="/YourBag"
+      element={status ? <OfflinePage /> : <YourBag />}
     />
     <Route
       path="*"
