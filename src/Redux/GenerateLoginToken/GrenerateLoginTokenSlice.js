@@ -48,9 +48,11 @@ export const GenerateLoginTokenSlice = createSlice({
     },
     handleLoggedout: (state, { payload }) => {
       // Avoid mutating the state directly, create a new object
+      localStorage.removeItem("customerToken")
       return {
         ...state,
         customerToken: "",
+        
         isLogin: false,
       };
     },
