@@ -8,6 +8,8 @@ import { AddToCartSlice } from "./Cart/AddtoCart";
 import { DeleteFromCartSlice } from "./Cart/DeleteFromCart";
 import { RegistrationSlice } from "./Registration/RegistrationSlice";
 import { GenerateLoginTokenSlice } from "./GenerateLoginToken/GrenerateLoginTokenSlice";
+import { CustomerDetailsLoggedinSlice } from "./CustomerDetails/CustomerDetailsLoggedinSlice";
+
 
 export const Store= configureStore({
     reducer:{
@@ -19,6 +21,7 @@ export const Store= configureStore({
         guestCartData:GuestCartSlice.reducer,
         deleteCartData:DeleteFromCartSlice.reducer,
         registerNewCustomer:RegistrationSlice.reducer,
-        generatelogintoken:GenerateLoginTokenSlice.reducer
+        generatelogintoken:GenerateLoginTokenSlice.reducer,
+        CustomerDetails:CustomerDetailsLoggedinSlice.reducer
     }
 })

@@ -5,14 +5,24 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import { FaRegHeart, FaSearch } from "react-icons/fa";
 import { HiViewList } from "react-icons/hi";
 import MiniCart from './MiniCart/MiniCart';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { handleLoggedout } from '../../../Redux/GenerateLoginToken/GrenerateLoginTokenSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { customerdetails } from '../../../Redux/CustomerDetails/CustomerDetailsLoggedinSlice';
 
 
 export default function Header() {
 
-
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { isLogin } = useSelector((state) => state.generatelogintoken)
+    // console.log("header",isLogin);
     const [toggle, setToggle] = useState(false);
-
+    useEffect(() => {
+        dispatch(customerdetails())
+    }, [isLogin])
+    const { CustomerDetailsData } = useSelector((state) => state.CustomerDetails)
+    // console.log("useselectordata", CustomerDetailsData);
     const toggleMenu = (event) => {
         event.preventDefault(); // Prevent the default behavior of the button
         setToggle(!toggle);
@@ -30,7 +40,10 @@ export default function Header() {
         setcartBtnToggle(!cartBtnToggle);
         console.log("CartToggleBtn:", cartBtnToggle);
     }
-
+    const logout = () => {
+        dispatch(handleLoggedout())
+        navigate("/")
+    }
 
     useEffect(() => {
         try {
@@ -153,21 +166,29 @@ export default function Header() {
                 </div>
 
                 <div className="header-middle">
+
                     <div className="h-links">
                         <a href="https://www.reebok.ae/returns" className="cms-page-l">return &amp; refund</a>
                         <a href="">Newsletter Signup</a>
-                        <Link className="header_account_link cms-page-l"
-                            to="/Login">Log In</Link>
+                        {isLogin ? (
+                            <>
+                                <p>welcome <span>{CustomerDetailsData?.data?.customer?.firstname}</span></p>
+                                < button onClick={logout} class="btn btn-outline-danger">
+                                    Logout
+                                </button>
+                            </>) : <Link className="header_account_link cms-page-l"
+                                to="/Login">Log In</Link>}
+
                     </div>
                 </div>
                 <div className="header-main">
                     <button className="toggleButton" onClick={toggleMenu}><HiViewList size={20} /></button>
                     <Link to="/">
-                    <div className="logo">
-                        <img src={logo} alt='Logo'></img>
-                    </div>
+                        <div className="logo">
+                            <img src={logo} alt='Logo'></img>
+                        </div>
                     </Link>
-                    
+
 
 
                     <ul className="nav">
@@ -230,7 +251,7 @@ export default function Header() {
 
 
 
-            </div>
+            </div >
         </>
     )
 }

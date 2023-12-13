@@ -1,11 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./Login.module.css"
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { generatelogintoken } from '../../../Redux/GenerateLoginToken/GrenerateLoginTokenSlice'
+// import { customerdetails } from '../../../Redux/CustomerDetails/CustomerDetailsLoggedinSlice'
+import Toast from '../../common/Toast/Toast'
 
 
 function Login() {
+    const [msg, setMsg] = useState('');
+    const [showToast, setShowToast] = useState(false);
+    const { isLogin,errorMessage } = useSelector((state) => state.generatelogintoken)
+
+    console.log("loginpageerr", errorMessage);
+    const navigate = useNavigate()
     const [user, setUser] = useState({
 
         email: "",
@@ -22,7 +30,7 @@ function Login() {
 
         if (name === "email") {
             if (value.length === 0) {
-                setError({ ...error, email: "enter the valid email" });
+                setError({ ...error, email: "enter email" });
                 setUser({ ...user, email: "" });
             } else if (!emailRegex.test(value)) {
                 setError({ ...error, email: "invalidemail" });
@@ -49,29 +57,45 @@ function Login() {
         }
     }
 
-    const sendData = (e) => {
+    const redirectUser = () => {
+        console.log("redirect function", isLogin);
+    
+        if (isLogin) {
+          navigate("/");
+          setMsg("Welcome");
+        } else {
+          setMsg(errorMessage);
+        }
+        setShowToast(true);
+      };
+    
+
+
+    const sendData = async (e) => {
         e.preventDefault();
-
+    
         // Check if there are no errors
-        if (
-
-            !error.email &&
-            !error.password
-
-        ) {
-
-            const userData = {
-                email: user.email,
-                password: user.password,
-            };
+        if (!error.email && !error.password) {
+          const userData = {
+            email: user.email,
+            password: user.password,
+          };
+    
+          try {
             // Dispatch the data using your dispatch function
             console.log(userData);
-            dispatch(generatelogintoken(userData));
+             dispatch(generatelogintoken(userData));
+    
+            // Redirect logic here (success)
+            redirectUser();
+          } catch (error) {
+            console.log("Login failed. Handle the error appropriately.");
+            // Handle login failure, show error message if needed
+          }
         } else {
-            // If there are errors, you might want to handle them (e.g., show an error message)
-            console.log("Form has errors. Please fix them.");
+          console.log("Form has errors. Please fix them.");
         }
-    };
+      };
     return (
         <>
             <div className={styles.wholePage}>
@@ -124,6 +148,8 @@ function Login() {
                 </div>
 
             </div>
+            {console.log("toast",showToast)}
+            {showToast? <Toast message={msg} />:""}
         </>
     )
 }

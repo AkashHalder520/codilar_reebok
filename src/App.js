@@ -3,16 +3,16 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./Components/common/Header/Header";
 import Footer from "./Components/common/Footer/Footer";
 import { useEffect, useState } from 'react';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
 import Toast from './Components/common/Toast/Toast';
 import AppRoutes from './Routes';
+import { check_token } from './Redux/GenerateLoginToken/GrenerateLoginTokenSlice';
+import { useDispatch } from 'react-redux';
 
 function App() {
   const [status, setStatus] = useState(!navigator.onLine);
   const [msg, setMsg] = useState('');
   const [showToast, setShowToast] = useState(false);
+  const dispatch=useDispatch()
   useEffect(() => {
 
     if (navigator.onLine) // After first time renders...
@@ -49,6 +49,11 @@ function App() {
       window.removeEventListener('offline', offlineHandler);
     };
   }, []);
+
+  //for checking online or offline
+  useEffect(() => {
+    dispatch(check_token())
+   }, [])
 
   return (
     <>

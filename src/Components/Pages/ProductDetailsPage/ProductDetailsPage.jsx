@@ -8,9 +8,11 @@ import { pdp_page } from '../../../Redux/Products/PdpPageSlice';
 import { createcart } from '../../../Redux/Cart/CreateCart';
 import { addtocart } from '../../../Redux/Cart/AddtoCart';
 import { guestcart } from '../../../Redux/Cart/GuestCart';
+import Toast from '../../common/Toast/Toast';
 // import Header from '../../common/Header/Header';
 function ProductDetailsPage() {
-
+const [successMessage,setsuccessMessage]=useState('')
+const [showToast, setShowToast] = useState(false);
     const dispatch = useDispatch()
     useEffect(() => {
         // getPdpDetails();
@@ -58,11 +60,15 @@ function ProductDetailsPage() {
     //for Add to bag button handeling
 
     const handelAddToBag = (event) => {
-
+        setShowToast(false)
         let cartId = localStorage.getItem('cartId')
 
         // setSelectedValue({...selectedValue,cartid:cartId})
-        dispatch(addtocart(selectedValue)).then(() => dispatch(guestcart(cartId))).catch((error) => {
+        dispatch(addtocart(selectedValue)).then(() => {
+            dispatch(guestcart(cartId))
+            setsuccessMessage ("Cart updated successfully.")
+            setShowToast(true) ;
+        }).catch((error) => {
             // Handle any error that occurs during the dispatch
             console.error("Error deleting product:", error);
         });
@@ -189,6 +195,7 @@ function ProductDetailsPage() {
                 </div>
 
             </div>}
+            {showToast && <Toast message={successMessage} />}
 
         </>
     )

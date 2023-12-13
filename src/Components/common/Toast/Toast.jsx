@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styles from './Toast.module.css'
 import ReactDOM from 'react-dom';
 const Toast = ({ message }) => {
+  
     const [visible, setVisible] = useState(true);
   
     useEffect(() => {
