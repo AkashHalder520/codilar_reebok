@@ -60,6 +60,7 @@ const [showToast, setShowToast] = useState(false);
     //for Add to bag button handeling
 
     const handelAddToBag = (event) => {
+        event.preventDefault()
         setShowToast(false)
         let cartId = localStorage.getItem('cartId')
 

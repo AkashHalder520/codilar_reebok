@@ -16,7 +16,7 @@ export default function Header() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { isLogin } = useSelector((state) => state.generatelogintoken)
-    // console.log("header",isLogin);
+    console.log("header",isLogin);
     const [toggle, setToggle] = useState(false);
     useEffect(() => {
         dispatch(customerdetails())

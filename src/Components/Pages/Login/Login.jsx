@@ -8,11 +8,11 @@ import Toast from '../../common/Toast/Toast'
 
 
 function Login() {
-    const [msg, setMsg] = useState('');
+    // const [msg, setMsg] = useState('');
     const [showToast, setShowToast] = useState(false);
     const { isLogin,errorMessage } = useSelector((state) => state.generatelogintoken)
 
-    console.log("loginpageerr", errorMessage);
+    console.log("loginpageerr", isLogin);
     const navigate = useNavigate()
     const [user, setUser] = useState({
 
@@ -23,6 +23,7 @@ function Login() {
     })
     const [error, setError] = useState({})
     const dispatch = useDispatch()
+
     const handelChange = (event) => {
         let name = event.target.name;
         let value = event.target.value
@@ -57,23 +58,17 @@ function Login() {
         }
     }
 
-    const redirectUser = () => {
-        console.log("redirect function", isLogin);
-    
-        if (isLogin) {
-          navigate("/");
-          setMsg("Welcome");
-        } else {
-          setMsg(errorMessage);
-        }
-        setShowToast(true);
-      };
-    
-
-
-    const sendData = async (e) => {
+const redirectUser=()=>{
+    console.log("s",isLogin);
+    if(isLogin){
+        navigate('/')
+    }
+}
+    const sendData = async(e) => {
+       
         e.preventDefault();
-    
+        
+        setShowToast(false)
         // Check if there are no errors
         if (!error.email && !error.password) {
           const userData = {
@@ -84,10 +79,17 @@ function Login() {
           try {
             // Dispatch the data using your dispatch function
             console.log(userData);
-             dispatch(generatelogintoken(userData));
-    
+            setShowToast(false)
+            await dispatch(generatelogintoken(userData)).then(()=>{
+                console.log("isLogin after dispatch:", isLogin);
+                
+                  setShowToast(true);
+                  
+             });
+             redirectUser();
             // Redirect logic here (success)
-            redirectUser();
+            // 
+        
           } catch (error) {
             console.log("Login failed. Handle the error appropriately.");
             // Handle login failure, show error message if needed
@@ -149,7 +151,8 @@ function Login() {
 
             </div>
             {console.log("toast",showToast)}
-            {showToast? <Toast message={msg} />:""}
+            {/* {console.log("toastmsg",)} */}
+            {showToast? <Toast message={errorMessage} />:""}
         </>
     )
 }
