@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react'
 import styles from "./Login.module.css"
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { generatelogintoken } from '../../../Redux/GenerateLoginToken/GrenerateLoginTokenSlice'
+import { check_token, generatelogintoken } from '../../../Redux/GenerateLoginToken/GrenerateLoginTokenSlice'
 // import { customerdetails } from '../../../Redux/CustomerDetails/CustomerDetailsLoggedinSlice'
 import Toast from '../../common/Toast/Toast'
+import { resetRedirect } from '../../../Redux/Registration/RegistrationSlice'
 
 
 function Login() {
@@ -12,7 +13,7 @@ function Login() {
     const [showToast, setShowToast] = useState(false);
     const { isLogin,errorMessage } = useSelector((state) => state.generatelogintoken)
 
-    console.log("loginpageerr", isLogin);
+    console.log("loginpageislogin", isLogin);
     const navigate = useNavigate()
     const [user, setUser] = useState({
 
@@ -23,6 +24,9 @@ function Login() {
     })
     const [error, setError] = useState({})
     const dispatch = useDispatch()
+//reset the redirect from register to login
+dispatch(resetRedirect())
+
 
     const handelChange = (event) => {
         let name = event.target.name;
@@ -60,9 +64,10 @@ function Login() {
 
 const redirectUser=()=>{
     console.log("s",isLogin);
-    if(isLogin){
-        navigate('/')
-    }
+    let token = localStorage.getItem("customerToken");
+    if (token !== undefined && token !== null && token !== "") {
+        navigate('/');
+      }
 }
     const sendData = async(e) => {
        
@@ -79,14 +84,16 @@ const redirectUser=()=>{
           try {
             // Dispatch the data using your dispatch function
             console.log(userData);
+            console.log("isLogin before dispatch:", isLogin);
             setShowToast(false)
-            await dispatch(generatelogintoken(userData)).then(()=>{
-                console.log("isLogin after dispatch:", isLogin);
-                
+             dispatch(generatelogintoken(userData)).then(()=>{
+              
+                // dispatch(check_token());  
                   setShowToast(true);
                   
-             });
-             redirectUser();
+             }).then(redirectUser());
+             console.log("isLogin after dispatch:", isLogin);
+            //  redirectUser();
             // Redirect logic here (success)
             // 
         

@@ -5,6 +5,7 @@ const initialState={
     responseData:"",
     status:"",
     errorMessage:"",
+    redirectToLogin: "",
 }
 export const createnewcustomer =createAsyncThunk(
     "register_new_customer",
@@ -26,7 +27,14 @@ export const RegistrationSlice=createSlice({
     name:"customer_Registration_slice",
     initialState,
     reducers:{
-
+        resetRedirect:(state, { payload }) => {
+            // Avoid mutating the state directly, create a new object
+            
+            return {
+              ...state,
+              redirectToLogin: "",
+            };
+        }
     },
     extraReducers:(builder)=>{
         builder.addCase(createnewcustomer.pending, (state, action) => {
@@ -37,7 +45,16 @@ export const RegistrationSlice=createSlice({
               state.status = 'fullfilled'
               console.log("response",action.payload);
               state.responseData = action.payload;
-              state.errorMessage=""
+             
+              if (action.payload?.errors) {
+                
+                state.errorMessage = action.payload?.errors[0]?.message
+                console.log("slicestate", state.errorMessage);
+              } 
+              else{
+                state.redirectToLogin='/Login'
+              }
+  
             })
             .addCase(createnewcustomer.rejected, (state, action) => {
               state.status = 'rejected'
@@ -45,4 +62,4 @@ export const RegistrationSlice=createSlice({
             })
     }
 })
-export const{}=RegistrationSlice.actions
+export const{resetRedirect}=RegistrationSlice.actions

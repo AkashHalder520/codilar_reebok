@@ -31,7 +31,7 @@ export const GenerateLoginTokenSlice = createSlice({
     check_token: (state, { payload }) => {
       let token = localStorage.getItem("customerToken");
       console.log("slicetoken", token);
-      if (token == "undefined" || token == null) {
+      if  (token === "undefined" || token === null || token === "") {
         console.log("reducer_loggedin");
         // Avoid mutating the state directly, create a new object
         return {

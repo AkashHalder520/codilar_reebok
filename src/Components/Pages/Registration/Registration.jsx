@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TiTick } from "react-icons/ti";
 import styles from "./Registration.module.css"
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createnewcustomer } from '../../../Redux/Registration/RegistrationSlice';
+import Toast from '../../common/Toast/Toast';
+import { useNavigate } from 'react-router-dom';
+import Loader from '../../common/Loader/Loader';
 
 function Registration() {
+  const [showToast, setShowToast] = useState(false);
+  const { status,errorMessage,redirectToLogin } = useSelector((state) => state.registerNewCustomer)
+  console.log("reg",status);
   const dispatch = useDispatch()
+  const navigate=useNavigate()
   const [user, setUser] = useState({
     first_name: "",
     last_name: "",
@@ -38,14 +45,19 @@ function Registration() {
         setUser({ ...user, last_name: value });
       }
     }
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
     if (name === "email") {
-      if (value.length == 0) {
-        setError({ ...error, email: "enter the valid email" })
-        setUser({ ...user, email: "" })
-      } else {
-        setError({ ...error, email: "" });
-        setUser({ ...user, email: value });
-      }
+        if (value.length === 0) {
+            setError({ ...error, email: "enter email" });
+            setUser({ ...user, email: "" });
+        } else if (!emailRegex.test(value)) {
+            setError({ ...error, email: "invalidemail" });
+            setUser({ ...user, email: value });
+        } else {
+            setError({ ...error, email: "" });
+            setUser({ ...user, email: value });
+        }
     }
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&^])[A-Za-z\d@.#$!%*?&]{8,15}$/;
 
@@ -75,9 +87,19 @@ function Registration() {
       }
     }
   }
-  const sendData = (e) => {
-    e.preventDefault();
+  const redirect=()=>{
+     console.log("ridirecttoLogin",redirectToLogin);
+     navigate(`${redirectToLogin}`)
+  }
 
+useEffect(()=>{
+  redirect()
+},[redirectToLogin])
+
+  const sendData = async (e) => {
+    e.preventDefault();
+    setShowToast(false);
+  
     // Check if there are no errors
     if (
       !error.first_name &&
@@ -86,26 +108,30 @@ function Registration() {
       !error.password &&
       !error.confirm_password
     ) {
-      // If no errors, dispatch the data
-      // let formData = new FormData();
-      // formData.append("first_name", user.first_name);
-      // formData.append("last_name", user.last_name);
-      // formData.append("email", user.email);
-      // formData.append("password", user.password);
       const userData = {
         first_name: user.first_name,
         last_name: user.last_name,
         email: user.email,
         password: user.password,
       };
-      // Dispatch the data using your dispatch function
-      console.log(userData);
-      dispatch(createnewcustomer(userData));
+  
+      try {
+        // Dispatch the data using your dispatch function
+        console.log(userData);
+        await dispatch(createnewcustomer(userData));
+        // Handle success, show a success message, or navigate somewhere
+        setShowToast(true);
+      } catch (error) {
+        // Handle the error appropriately
+        console.log("Error creating a new customer:", error);
+        // You might want to show an error message to the user
+      }
     } else {
       // If there are errors, you might want to handle them (e.g., show an error message)
       console.log("Form has errors. Please fix them.");
     }
   };
+  
 
   return (
     <>
@@ -154,8 +180,12 @@ function Registration() {
             </div>
 
           </div>
-
-          <button className={styles.buttonPrimary} onClick={sendData}>Join for Free</button>
+            {
+            status=="loading"? <Loader/> 
+            :
+            <button className={styles.buttonPrimary} onClick={sendData}>Join for Free</button> 
+            }
+          
         </div>
 
         <div className={styles.rightPart}>
@@ -169,6 +199,7 @@ function Registration() {
         </div>
 
       </div>
+      {showToast? <Toast message={errorMessage} />:""}
     </>
   );
 }
