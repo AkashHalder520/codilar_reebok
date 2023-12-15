@@ -34,7 +34,7 @@ export const guestcart = createAsyncThunk(
       })
         .addCase(guestcart.fulfilled, (state, action) => {
           state.status = 'fullfilled'
-          state.guestCartData = action.payload;
+          state.guestCartData = action.payload.cart;
           console.log("Guest cart data",action.payload);
           state.errorMessage="";
         })

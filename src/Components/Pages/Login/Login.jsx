@@ -6,6 +6,7 @@ import { check_token, generatelogintoken } from '../../../Redux/GenerateLoginTok
 // import { customerdetails } from '../../../Redux/CustomerDetails/CustomerDetailsLoggedinSlice'
 import Toast from '../../common/Toast/Toast'
 import { resetRedirect } from '../../../Redux/Registration/RegistrationSlice'
+import { customercart } from '../../../Redux/Cart/CustomerCartSlice'
 
 
 function Login() {
@@ -65,7 +66,8 @@ dispatch(resetRedirect())
 const redirectUser=()=>{
     console.log("s",isLogin);
     let token = localStorage.getItem("customerToken");
-    if (token !== undefined && token !== null && token !== "") {
+    if (token !== "undefined" && token !== null && token !== "") {
+        dispatch(customercart())
         navigate('/');
       }
 }
@@ -90,8 +92,9 @@ const redirectUser=()=>{
               
                 // dispatch(check_token());  
                   setShowToast(true);
+                  redirectUser()
                   
-             }).then(redirectUser());
+             });
              console.log("isLogin after dispatch:", isLogin);
             //  redirectUser();
             // Redirect logic here (success)

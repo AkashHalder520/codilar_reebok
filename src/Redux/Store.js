@@ -9,6 +9,7 @@ import { DeleteFromCartSlice } from "./Cart/DeleteFromCart";
 import { RegistrationSlice } from "./Registration/RegistrationSlice";
 import { GenerateLoginTokenSlice } from "./GenerateLoginToken/GrenerateLoginTokenSlice";
 import { CustomerDetailsLoggedinSlice } from "./CustomerDetails/CustomerDetailsLoggedinSlice";
+import { CustomerCartSlice } from "./Cart/CustomerCartSlice";
 
 
 export const Store= configureStore({
@@ -22,6 +23,7 @@ export const Store= configureStore({
         deleteCartData:DeleteFromCartSlice.reducer,
         registerNewCustomer:RegistrationSlice.reducer,
         generatelogintoken:GenerateLoginTokenSlice.reducer,
-        CustomerDetails:CustomerDetailsLoggedinSlice.reducer
+        CustomerDetails:CustomerDetailsLoggedinSlice.reducer,
+        customercart:CustomerCartSlice.reducer,
     }
 })
