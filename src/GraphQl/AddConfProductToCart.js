@@ -1,5 +1,6 @@
 const AddConfProductToCart=async(props)=>{
-  
+  const customerToken = localStorage.getItem('customerToken')
+  console.log("addtocartProps",props);
     const requestBody = {
         query: `
         mutation {
@@ -42,6 +43,7 @@ const AddConfProductToCart=async(props)=>{
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${customerToken}`,
             // Include any necessary headers like authorization tokens here
           },
           body: JSON.stringify(requestBody)

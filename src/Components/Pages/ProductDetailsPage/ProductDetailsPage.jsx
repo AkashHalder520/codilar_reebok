@@ -9,6 +9,7 @@ import { createcart } from '../../../Redux/Cart/CreateCart';
 import { addtocart } from '../../../Redux/Cart/AddtoCart';
 import { guestcart } from '../../../Redux/Cart/GuestCart';
 import Toast from '../../common/Toast/Toast';
+import { customercart } from '../../../Redux/Cart/CustomerCartSlice';
 // import Header from '../../common/Header/Header';
 function ProductDetailsPage() {
 const [successMessage,setsuccessMessage]=useState('')
@@ -37,14 +38,27 @@ const [showToast, setShowToast] = useState(false);
     }, []);
 
     let cartId = localStorage.getItem('cartId')
-    console.log("pdp lc", cartId);
+    // console.log("pdp lc", cartId);
+let customerToken=localStorage.getItem('customerToken')
+let customerCartId=localStorage.getItem('CustomerCartId')
+//check if online or offline with the help of token 
 
-    // State to store the selected option value
-    const [selectedValue, setSelectedValue] = useState({
-        cartid: `${cartId}`,
-        parentSku: "",
-        childSku: ""
-    });
+
+ // State to store the selected option value
+//  const [selectedValue, setSelectedValue] = useState({
+//     cartid: `${cartId}`,
+//     parentSku: "",
+//     childSku: ""
+// });
+
+const [selectedValue, setSelectedValue] = useState({
+    cartid: customerToken && customerToken !== "undefined" ? `${customerCartId}` : `${cartId}`,
+    parentSku: "",
+    childSku: ""
+});
+
+
+   
 
     // Event handler to update the selected value
     const handleRadioChange = (event) => {
@@ -57,6 +71,10 @@ const [showToast, setShowToast] = useState(false);
     };
 
 
+    const cartActionToDispatch = customerToken && customerToken !== "undefined"
+    ? () => dispatch(customercart())
+    : () => dispatch(guestcart(cartId));
+
     //for Add to bag button handeling
 
     const handelAddToBag = (event) => {
@@ -66,7 +84,7 @@ const [showToast, setShowToast] = useState(false);
 
         // setSelectedValue({...selectedValue,cartid:cartId})
         dispatch(addtocart(selectedValue)).then(() => {
-            dispatch(guestcart(cartId))
+            cartActionToDispatch()
             setsuccessMessage ("Cart updated successfully.")
             setShowToast(true) ;
         }).catch((error) => {

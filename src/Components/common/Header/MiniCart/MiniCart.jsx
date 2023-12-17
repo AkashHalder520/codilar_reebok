@@ -103,19 +103,19 @@ function MiniCart({ cartBtnToggle }) {
     const MiniCartContentCustomer = () => {
         return (
             <div className={cartBtnToggle ? styles.closeMiniCart : styles.openMiniCart}>
-                {CustomerCartData.items?.length == 0  ? (
+                {CustomerCartData?.items?.length == 0 ?(
                     <p>No data in cart</p>
                 ) : (
                     <>
                         <div className={styles.miniCartParent}>
                             <div className={styles.miniCartTop}>
                                 <div className={styles.miniCartTopL}>
-                                    <span>{CustomerCartData.items?.length}</span>
+                                    <span>{CustomerCartData?.items?.length}</span>
                                     <p>Item in Bag</p>
                                 </div>
                                 <div className={styles.miniCartTopR}>
                                     <p>Cart Sub-total</p>
-                                    <h2>{CustomerCartData.prices?.grand_total?.currency} {CustomerCartData.prices?.grand_total?.value}</h2>
+                                    <h2>{CustomerCartData?.prices?.grand_total?.currency} {CustomerCartData?.prices?.grand_total?.value}</h2>
                                 </div>
                             </div>
                             <button className={styles.miniCartCheckoutBtn}>
@@ -165,6 +165,7 @@ function MiniCart({ cartBtnToggle }) {
     return (
         <>
             {localStorage.getItem('customerToken') ? MiniCartContentCustomer() : MiniCartContentGuest()}
+            {/* if the customer token present then   */}
         </>
     );
 }

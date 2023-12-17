@@ -13,7 +13,7 @@ export const customerdetails =createAsyncThunk(
         // console.log("slicepage",formdata);
         try{
             const data=await CustomerDetailsLoggedin();
-
+console.log("customer details",data);
             return data
         }
         catch(error){
