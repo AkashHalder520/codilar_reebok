@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { guestcart } from '../../../../Redux/Cart/GuestCart';
+import { cartdata } from '../../../../Redux/Cart/CartData';
 import { deletefromcart } from '../../../../Redux/Cart/DeleteFromCart';
 import styles from './MiniCart.module.css';  // Import the CSS module
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router-dom';
-import { customercart } from '../../../../Redux/Cart/CustomerCartSlice';
 import { check_token } from '../../../../Redux/GenerateLoginToken/GrenerateLoginTokenSlice';
 
 function MiniCart({ cartBtnToggle }) {
@@ -13,19 +12,19 @@ function MiniCart({ cartBtnToggle }) {
 
     useEffect(() => {
         let cartId = localStorage.getItem('cartId');
-        
+        let customerCartId=localStorage.getItem('CustomerCartId')
         let token = localStorage.getItem('customerToken')
         // for login customer cart
         if (token !== "undefined" && token !== null && token !== "") {
-            dispatch(customercart()).then(() => dispatch(check_token()));
+            dispatch(cartdata(customerCartId)).then(() => dispatch(check_token()));
         } else {
             
-            dispatch(guestcart(cartId)).then(()=>dispatch(check_token()))
+            dispatch(cartdata(cartId)).then(()=>dispatch(check_token()))
         }
 
-    }, []);
+    }, [cartBtnToggle]);
 
-    const { status, guestCartData, errorMessage } = useSelector((state) => state.guestCartData);
+    const { status, guestCartData, errorMessage } = useSelector((state) => state.cartDataSlice);
     const { CustomerCartData } = useSelector((state) => state.customercart)
     const { isLogin } = useSelector((state) => state.generatelogintoken)
     // console.log("minicartjsx", guestCartData.items?.length);
@@ -33,27 +32,36 @@ function MiniCart({ cartBtnToggle }) {
     const handelDeleteclick = (uid) => {
         console.log("onclick uid", uid);
         let cartId = localStorage.getItem('cartId');
-        dispatch(deletefromcart({ uid, cartId })).then(() => dispatch(guestcart(cartId))).catch((error) => {
+        let token = localStorage.getItem('customerToken')
+        let customerCartId=localStorage.getItem('CustomerCartId')
+        if (token !== "undefined" && token !== null && token !== "") {
+            dispatch(deletefromcart({ uid, customerCartId })).then(() => dispatch(cartdata(customerCartId))).catch((error) => {
+                // Handle any error that occurs during the dispatch
+                console.error("Error deleting product:", error);
+            });
+        }else{
+        dispatch(deletefromcart({ uid, cartId })).then(() => dispatch(cartdata(cartId))).catch((error) => {
             // Handle any error that occurs during the dispatch
             console.error("Error deleting product:", error);
         });
+    }
     };
     const MiniCartContentGuest = () => {
         return (
             <div className={cartBtnToggle ? styles.closeMiniCart : styles.openMiniCart}>
-                {guestCartData.items?.length == 0 || guestCartData.items === undefined ? (
+                {guestCartData?.items?.length == 0 || guestCartData == null ? (
                     <p>No data in cart</p>
                 ) : (
                     <>
                         <div className={styles.miniCartParent}>
                             <div className={styles.miniCartTop}>
                                 <div className={styles.miniCartTopL}>
-                                    <span>{guestCartData.items?.length}</span>
+                                    <span>{guestCartData?.items?.length}</span>
                                     <p>Item in Bag</p>
                                 </div>
                                 <div className={styles.miniCartTopR}>
                                     <p>Cart Sub-total</p>
-                                    <h2>{guestCartData.prices?.grand_total?.currency} {guestCartData.prices?.grand_total?.value}</h2>
+                                    <h2>{guestCartData?.prices?.grand_total?.currency} {guestCartData?.prices?.grand_total?.value}</h2>
                                 </div>
                             </div>
                             <button className={styles.miniCartCheckoutBtn}>
@@ -164,7 +172,7 @@ function MiniCart({ cartBtnToggle }) {
     }
     return (
         <>
-            {localStorage.getItem('customerToken') ? MiniCartContentCustomer() : MiniCartContentGuest()}
+            { MiniCartContentGuest()}
             {/* if the customer token present then   */}
         </>
     );

@@ -7,13 +7,15 @@ import { check_token, generatelogintoken } from '../../../Redux/GenerateLoginTok
 import Toast from '../../common/Toast/Toast'
 import { resetRedirect } from '../../../Redux/Registration/RegistrationSlice'
 import { customercart } from '../../../Redux/Cart/CustomerCartSlice'
+import { mergecarts } from '../../../Redux/Cart/MergeCartsSlice'
+import Loader from '../../common/Loader/Loader'
 
 
 function Login() {
     // const [msg, setMsg] = useState('');
     const [showToast, setShowToast] = useState(false);
-    const { isLogin,errorMessage } = useSelector((state) => state.generatelogintoken)
-
+    const { loginstatus, isLogin, errorMessage } = useSelector((state) => state.generatelogintoken)
+const{ccsstatus}=useSelector((state)=>state.customercart)
     console.log("loginpageislogin", isLogin);
     const navigate = useNavigate()
     const [user, setUser] = useState({
@@ -25,8 +27,8 @@ function Login() {
     })
     const [error, setError] = useState({})
     const dispatch = useDispatch()
-//reset the redirect from register to login
-dispatch(resetRedirect())
+    //reset the redirect from register to login
+    dispatch(resetRedirect())
 
 
     const handelChange = (event) => {
@@ -63,51 +65,56 @@ dispatch(resetRedirect())
         }
     }
 
-const redirectUser=()=>{
-    console.log("s",isLogin);
-    let token = localStorage.getItem("customerToken");
-    if (token !== "undefined" && token !== null && token !== "") {
-        dispatch(customercart())
-        navigate('/');
-      }
-}
-    const sendData = async(e) => {
-       
+    const redirectUser = () => {
+        // console.log("s", isLogin);
+        let token = localStorage.getItem("customerToken");
+        if (token !== "undefined" && token !== null && token !== "") {
+
+            dispatch(customercart()).then(() => {
+                dispatch(mergecarts())
+                navigate('/')
+
+            })
+
+
+
+
+        }
+    }
+    const sendData = async (e) => {
+
         e.preventDefault();
-        
+
         setShowToast(false)
         // Check if there are no errors
         if (!error.email && !error.password) {
-          const userData = {
-            email: user.email,
-            password: user.password,
-          };
-    
-          try {
-            // Dispatch the data using your dispatch function
-            console.log(userData);
-            console.log("isLogin before dispatch:", isLogin);
-            setShowToast(false)
-             dispatch(generatelogintoken(userData)).then(()=>{
-              
-                // dispatch(check_token());  
-                  setShowToast(true);
-                  redirectUser()
-                  
-             });
-             console.log("isLogin after dispatch:", isLogin);
-            //  redirectUser();
-            // Redirect logic here (success)
-            // 
-        
-          } catch (error) {
-            console.log("Login failed. Handle the error appropriately.");
-            // Handle login failure, show error message if needed
-          }
+            const userData = {
+                email: user.email,
+                password: user.password,
+            };
+
+            try {
+                console.log(userData);
+
+                setShowToast(false);
+
+                // Dispatch the data using your dispatch function
+              await  dispatch(generatelogintoken(userData)).then(() => {
+
+                    // dispatch(check_token());  
+                    setShowToast(true);
+                    redirectUser()
+
+                });
+
+            } catch (error) {
+                console.log("Login failed. Handle the error appropriately.");
+                // Handle login failure, show error message if needed
+            }
         } else {
-          console.log("Form has errors. Please fix them.");
+            console.log("Form has errors. Please fix them.");
         }
-      };
+    };
     return (
         <>
             <div className={styles.wholePage}>
@@ -130,8 +137,13 @@ const redirectUser=()=>{
 
 
                     </div>
+                    {
+                        loginstatus == "loading"  ? <Loader />
+                            :
+                            <button className={styles.buttonPrimary} onClick={sendData}>Log in</button>
+                    }
 
-                    <button className={styles.buttonPrimary} onClick={sendData}>Log in</button>
+
                     <div className={styles.or}>
                         or
                     </div>
@@ -160,9 +172,9 @@ const redirectUser=()=>{
                 </div>
 
             </div>
-            {console.log("toast",showToast)}
+            {console.log("toast", showToast)}
             {/* {console.log("toastmsg",)} */}
-            {showToast? <Toast message={errorMessage} />:""}
+            {showToast ? <Toast message={errorMessage} /> : ""}
         </>
     )
 }

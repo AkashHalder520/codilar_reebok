@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import GuestCartData from "../../GraphQl/GuestCartData";
+import CartData from "../../GraphQl/CartData";
 
-export const guestcart = createAsyncThunk(
-    "guest_cart_data",
+export const cartdata = createAsyncThunk(
+    "cart_data",
     async (props) => {
       console.log("guestcart",props);
       try {
-        const data = await GuestCartData(props);
+        const data = await CartData(props);
         return data;
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -21,24 +21,24 @@ export const guestcart = createAsyncThunk(
     errorMessage: ''
   };
   
-  export const GuestCartSlice = createSlice({
-    name: "Guest_card_data",
+  export const CartDataSlice = createSlice({
+    name: "cart_data",
     initialState,
     reducers: {
   
     },
     extraReducers: (builder) => {
-      builder.addCase(guestcart.pending, (state, action) => {
+      builder.addCase(cartdata.pending, (state, action) => {
         state.status = 'loading'
         state.errorMessage=""
       })
-        .addCase(guestcart.fulfilled, (state, action) => {
+        .addCase(cartdata.fulfilled, (state, action) => {
           state.status = 'fullfilled'
           state.guestCartData = action.payload.cart;
           console.log("Guest cart data",action.payload);
           state.errorMessage="";
         })
-        .addCase(guestcart.rejected, (state, action) => {
+        .addCase(cartdata.rejected, (state, action) => {
           state.status = 'rejected'
           state.errorMessage="Failed to fetch data from server please come back after some time"
         })
@@ -46,4 +46,4 @@ export const guestcart = createAsyncThunk(
   
   
   })
-  export const{}= GuestCartSlice.actions
+  export const{}= CartDataSlice.actions

@@ -5,7 +5,7 @@ import GenerateLoginToken from "../../GraphQl/GenerateLoginToken";
 const initialState = {
   customerToken: "",
   isLogin: false,
-  status: "",
+  loginstatus: "",
   errorMessage: "",
 }
 export const generatelogintoken = createAsyncThunk(
@@ -49,6 +49,8 @@ export const GenerateLoginTokenSlice = createSlice({
     handleLoggedout: (state, { payload }) => {
       // Avoid mutating the state directly, create a new object
       localStorage.removeItem("customerToken")
+      localStorage.removeItem('cartId')
+      localStorage.removeItem('CustomerCartId')
       return {
         ...state,
         customerToken: "",
@@ -59,11 +61,11 @@ export const GenerateLoginTokenSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(generatelogintoken.pending, (state, action) => {
-      state.status = 'loading'
+      state.loginstatus = 'loading'
       state.errorMessage = ""
     })
       .addCase(generatelogintoken.fulfilled, (state, action) => {
-        state.status = 'fullfilled'
+        state.loginstatus = 'fullfilled'
         console.log("responselogintoken", action.payload);
         state.customerToken = action.payload?.data?.generateCustomerToken?.token;
         localStorage.setItem("customerToken", action.payload?.data?.generateCustomerToken?.token);
@@ -79,7 +81,7 @@ export const GenerateLoginTokenSlice = createSlice({
 
       })
       .addCase(generatelogintoken.rejected, (state, action) => {
-        state.status = 'rejected'
+        state.loginstatus = 'rejected'
         state.errorMessage = "Failed to fetch data from server please come back after some time"
         console.log("error");
       })

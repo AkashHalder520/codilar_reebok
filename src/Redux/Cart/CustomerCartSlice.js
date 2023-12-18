@@ -19,7 +19,7 @@ export const customercart = createAsyncThunk(
 )
 
 const initialState = {
-  status: '',
+  ccsstatus: '',
   CustomerCartData: null,
   errorMessage: ''
 };

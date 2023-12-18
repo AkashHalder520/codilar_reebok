@@ -1,11 +1,11 @@
 const DeleteConfProductCart=async(props)=>{
-  
+  const customerToken = localStorage.getItem('customerToken')
     const requestBody = {
         query: `
         mutation {
           removeItemFromCart(
             input: {
-              cart_id: "${props.cartId}",
+              cart_id: "${props.cartId || props.customerCartId}",
               cart_item_uid:"${props.uid}"
               
             }
@@ -37,6 +37,7 @@ const DeleteConfProductCart=async(props)=>{
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${customerToken}`,
             // Include any necessary headers like authorization tokens here
           },
           body: JSON.stringify(requestBody)
@@ -45,7 +46,7 @@ const DeleteConfProductCart=async(props)=>{
         const responseData = await response.json();
         // Assuming your GraphQL response structure matches the expected format
         // Access the cartId from the response and update the state
-        console.log('response data:',responseData);
+        console.log('response Del data:',responseData);
         return responseData;
       } catch (error) {
         console.error('Error creating cart:', error);

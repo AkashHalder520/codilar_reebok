@@ -38,7 +38,7 @@ const MergeCartsMutation=async()=>{
         const responseData = await response.json();
         // Assuming your GraphQL response structure matches the expected format
         // Access the cartId from the response and update the state
-        console.log('response data:',responseData);
+        console.log('response Merge Cart:',responseData);
         return responseData;
       } catch (error) {
         console.error('Error creating cart:', error);

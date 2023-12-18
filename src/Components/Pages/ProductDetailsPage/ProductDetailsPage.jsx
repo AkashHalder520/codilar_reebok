@@ -7,13 +7,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { pdp_page } from '../../../Redux/Products/PdpPageSlice';
 import { createcart } from '../../../Redux/Cart/CreateCart';
 import { addtocart } from '../../../Redux/Cart/AddtoCart';
-import { guestcart } from '../../../Redux/Cart/GuestCart';
+
 import Toast from '../../common/Toast/Toast';
 import { customercart } from '../../../Redux/Cart/CustomerCartSlice';
+import { cartdata } from '../../../Redux/Cart/CartData';
 // import Header from '../../common/Header/Header';
 function ProductDetailsPage() {
-const [successMessage,setsuccessMessage]=useState('')
-const [showToast, setShowToast] = useState(false);
+    const [successMessage, setsuccessMessage] = useState('')
+    const [showToast, setShowToast] = useState(false);
     const dispatch = useDispatch()
     useEffect(() => {
         // getPdpDetails();
@@ -36,44 +37,48 @@ const [showToast, setShowToast] = useState(false);
             dispatch(createcart());
         }
     }, []);
-
-    let cartId = localStorage.getItem('cartId')
     // console.log("pdp lc", cartId);
-let customerToken=localStorage.getItem('customerToken')
-let customerCartId=localStorage.getItem('CustomerCartId')
-//check if online or offline with the help of token 
+    let cartId = localStorage.getItem('cartId')
+
+    let customerToken = localStorage.getItem('customerToken')
+    let customerCartId = localStorage.getItem('CustomerCartId')
+    //check if online or offline with the help of token 
 
 
- // State to store the selected option value
-//  const [selectedValue, setSelectedValue] = useState({
-//     cartid: `${cartId}`,
-//     parentSku: "",
-//     childSku: ""
-// });
+    // State to store the selected option value
+    //  const [selectedValue, setSelectedValue] = useState({
+    //     cartid: `${cartId}`,
+    //     parentSku: "",
+    //     childSku: ""
+    // });
 
-const [selectedValue, setSelectedValue] = useState({
-    cartid: customerToken && customerToken !== "undefined" ? `${customerCartId}` : `${cartId}`,
-    parentSku: "",
-    childSku: ""
-});
+    const [selectedValue, setSelectedValue] = useState({
+        cartid: "",
+        parentSku: "",
+        childSku: ""
+    });
 
 
-   
+
 
     // Event handler to update the selected value
     const handleRadioChange = (event) => {
+        let cartId = localStorage.getItem('cartId')
+        let customerToken = localStorage.getItem('customerToken')
+        let customerCartId = localStorage.getItem('CustomerCartId')
+
         let value = event.target.value
-        setSelectedValue(prevState => ({
-            ...prevState,
+        setSelectedValue({
+            cartid: customerToken && customerToken !== "undefined" ? `${customerCartId}` : `${cartId}`,
             childSku: value,
             parentSku: pdpData?.data?.products?.items[0]?.sku,
-        }));
+        });
     };
 
 
     const cartActionToDispatch = customerToken && customerToken !== "undefined"
-    ? () => dispatch(customercart())
-    : () => dispatch(guestcart(cartId));
+        ? () => dispatch(customercart())
+        : () => dispatch(cartdata(cartId));
 
     //for Add to bag button handeling
 
@@ -85,8 +90,8 @@ const [selectedValue, setSelectedValue] = useState({
         // setSelectedValue({...selectedValue,cartid:cartId})
         dispatch(addtocart(selectedValue)).then(() => {
             cartActionToDispatch()
-            setsuccessMessage ("Cart updated successfully.")
-            setShowToast(true) ;
+            setsuccessMessage("Cart updated successfully.")
+            setShowToast(true);
         }).catch((error) => {
             // Handle any error that occurs during the dispatch
             console.error("Error deleting product:", error);

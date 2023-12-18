@@ -3,13 +3,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { ProductPriceFilterSlice } from "./Products/ProductPriceFilterSlice";
 import { PdpPageSlice } from "./Products/PdpPageSlice";
 import { CreateCartSlice } from "./Cart/CreateCart";
-import { GuestCartSlice } from "./Cart/GuestCart";
 import { AddToCartSlice } from "./Cart/AddtoCart";
 import { DeleteFromCartSlice } from "./Cart/DeleteFromCart";
 import { RegistrationSlice } from "./Registration/RegistrationSlice";
 import { GenerateLoginTokenSlice } from "./GenerateLoginToken/GrenerateLoginTokenSlice";
 import { CustomerDetailsLoggedinSlice } from "./CustomerDetails/CustomerDetailsLoggedinSlice";
 import { CustomerCartSlice } from "./Cart/CustomerCartSlice";
+import { CartDataSlice } from "./Cart/CartData";
+import { MergeCartSlice } from "./Cart/MergeCartsSlice";
 
 
 export const Store= configureStore({
@@ -19,11 +20,12 @@ export const Store= configureStore({
         pdppage:PdpPageSlice.reducer,
         createEmptyCart:CreateCartSlice.reducer,
         addToCart:AddToCartSlice.reducer,
-        guestCartData:GuestCartSlice.reducer,
+        cartDataSlice:CartDataSlice.reducer,
         deleteCartData:DeleteFromCartSlice.reducer,
         registerNewCustomer:RegistrationSlice.reducer,
         generatelogintoken:GenerateLoginTokenSlice.reducer,
         CustomerDetails:CustomerDetailsLoggedinSlice.reducer,
         customercart:CustomerCartSlice.reducer,
+        mergeCart:MergeCartSlice.reducer,
     }
 })

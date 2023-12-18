@@ -1,5 +1,6 @@
-const GuestCartData=async(cartId)=>{
+const CartData=async(cartId)=>{
   // console.log("guestcard", cartId);
+  const customerToken = localStorage.getItem('customerToken')
     const requestBody = {
         query: `
         {
@@ -129,6 +130,7 @@ const GuestCartData=async(cartId)=>{
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${customerToken}`,
             // Include any necessary headers like authorization tokens here
           },
           body: JSON.stringify(requestBody)
@@ -144,4 +146,4 @@ const GuestCartData=async(cartId)=>{
         throw error;
       }
 }
-export default GuestCartData
+export default CartData

@@ -14,7 +14,7 @@ export const  deletefromcart= createAsyncThunk(
     }
 )
 const initialState={
-    status:'',
+    Delstatus:'',
     response:'',
     errorMessage:'',
 };
