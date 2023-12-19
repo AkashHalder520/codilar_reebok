@@ -19,11 +19,11 @@ export default function Sidebar({ toggle, toggleMenu }) {
     setToggle(!toggel)
     console.log(toggel);
   }
-  const renderDescription=()=>{
-    return(
+  const renderDescription = () => {
+    return (
       <>
-      <div className={styles.pricesliderpadding}>
-      <label>Price Range</label>
+        <div className={styles.pricesliderpadding}>
+          <label>Price Range</label>
           <Slider
             range
             min={0}
@@ -36,7 +36,7 @@ export default function Sidebar({ toggle, toggleMenu }) {
             {/* Display selected price range */}
             Price: {priceRange[0]} - {priceRange[1]}
           </div>
-      </div>
+        </div>
       </>
     )
   }
@@ -44,11 +44,11 @@ export default function Sidebar({ toggle, toggleMenu }) {
   //sending the current value and final value to redux slice
   // let min=priceRange[0];
   // let max=priceRange[1];
-// console.log("slider price range",priceRange);
-//   useEffect(() => {
-//     dispatch(ProductPriceFilter(priceRange))
-//   }, [priceRange])
-  
+  // console.log("slider price range",priceRange);
+  //   useEffect(() => {
+  //     dispatch(ProductPriceFilter(priceRange))
+  //   }, [priceRange])
+
 
   useEffect(() => {
     let timeoutId;
@@ -65,22 +65,28 @@ export default function Sidebar({ toggle, toggleMenu }) {
   }, [priceRange]);
 
 
-// console.log("asdfasdf",priceRange)
+  // console.log("asdfasdf",priceRange)
   return (
     <>
       <div className={toggle ? styles.sidenavopen : styles.sidenav}>
-      <button className={styles.closebtn} onClick={toggleMenu}>
-        <IoIosCloseCircleOutline size={30} />
-      </button>
-
-      <div id={styles.priceslider}>
-        <div className={styles['desc-title']}>
-          <div>Price Range</div>
-          <button onClick={handleToggel}>{toggel ? <FaMinus size={20} /> : <FaPlus size={20} />}</button>
+        <button className={styles.closebtn} onClick={toggleMenu}>
+          <IoIosCloseCircleOutline size={30} />
+        </button>
+        {/* <div className={styles.SortBy}>
+            <div className={styles['SortBy-title']}>
+              <div>Sort By</div>
+              <button onClick={handleToggel}>{toggel ? <FaMinus size={20} /> : <FaPlus size={20} />}</button>
+            </div>
+        </div> */}
+        <div id={styles.priceslider}>
+          <div className={styles['desc-title']}>
+            <div>Price Range</div>
+            <button onClick={handleToggel}>{toggel ? <FaMinus size={20} /> : <FaPlus size={20} />}</button>
+          </div>
+          <div className={toggel ? styles['desc-main'] : styles.hidden}>{renderDescription()}</div>
         </div>
-        <div className={toggel ? styles['desc-main'] : styles.hidden}>{renderDescription()}</div>
+        
       </div>
-    </div>
 
 
     </>

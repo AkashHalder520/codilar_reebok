@@ -3,8 +3,16 @@
     display: flex;
     justify-content: center;
     gap: 2vw;
+    margin: 2px auto;
+    width: 80%;
 }
-
+.leftside{
+    width: 55%;
+}
+.cardProductContainer{
+    height: 500px;
+    overflow-y: auto;
+}
 .product {
     border: 1px solid black;
     align-items: center;
@@ -12,6 +20,7 @@
     height: 250px;
     display: flex;
     gap: 1vw;
+    /* font-size: large; */
 }
 
 .productleftside img {
@@ -19,9 +28,13 @@
     object-fit: fill;
     height: 100%;
 }
+.productrightside{
+    width: 70%;
+}
 
 .productrightsidedetails {
     display: flex;
+    justify-content: space-between;
     gap: 1vw;
     padding: 16px;
     margin-top: 18px;
@@ -32,8 +45,16 @@
     margin-bottom: 18px;
     height: 50px;
     margin-top: 16%;
+    width: 20%;
 }
-
+.productrightsidedetails p  {
+    
+   font-size: large;
+   font-weight: 500;
+}
+.mobileviewbtn button{
+    display: none;
+}
 .rightside {
     margin-top: 2%;
 }
@@ -46,6 +67,9 @@
     width: 100%;
     cursor: pointer;
     box-shadow: 3px 3px 0px 0px white, 3px 3px 0px 1px black;
+}
+.buttonPrimaryx{
+    display: none;
 }
 
 .items {
@@ -115,6 +139,16 @@
     cursor: pointer;
     box-shadow: 3px 3px 0px 0px white, 3px 3px 0px 1px black;
 }
+.buttonPrimaryupdate{
+    font-weight: bold;
+    padding: 10px 15px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    width: 85%;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px 0px white, 3px 3px 0px 1px black;
+}
 
 .addGiftCard {
     margin-top: 27px;
@@ -144,7 +178,10 @@
         flex-direction: column;
         align-items: center;
         margin: auto;
-        width: 95%;
+        width: 98% ;
+    }
+    .leftside{
+        width: inherit;
     }
 
     .product {
@@ -156,6 +193,33 @@
         width: 100%;
         height: auto;
     }
-
+    .rightside .buttonPrimary{
+        display: none !important;
+    }
+    .mobileviewbtn{
+        display: flex;
+        justify-content: space-between;
+    }
+    .mobileviewbtn button{
+        display: flex;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+    }
+   
+.buttonPrimaryupdate{
+    width: 100%;
+}
+.buttonPrimaryx{
+    display: block;
+    padding: 10px 15px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px 0px white, 3px 3px 0px 1px black;
+}
     /* Add more responsive styles as needed */
 }

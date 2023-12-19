@@ -22,7 +22,7 @@ function MiniCart({ cartBtnToggle }) {
             dispatch(cartdata(cartId)).then(()=>dispatch(check_token()))
         }
 
-    }, [cartBtnToggle]);
+    },[cartBtnToggle]);
 
     const { status, guestCartData, errorMessage } = useSelector((state) => state.cartDataSlice);
     const { CustomerCartData } = useSelector((state) => state.customercart)
@@ -72,7 +72,7 @@ function MiniCart({ cartBtnToggle }) {
 
                             <div className={styles.miniCartLine}></div>
 
-                            <div className={styles.cardProductContainer}>
+                            <div className={styles.cartProductContainer}>
                                 {guestCartData?.items?.map((value, index) => (
                                     <div key={index}>
                                         <div className={styles.miniCartProduct}>
@@ -100,7 +100,7 @@ function MiniCart({ cartBtnToggle }) {
                             </div>
                             <div className={styles.miniCartLine}></div>
                             <div className={styles.minicartLastSec}>
-                                <Link to="">View and Edit Bag</Link>
+                                <Link to="/YourBag">View and Edit Bag</Link>
                             </div>
                         </div>
                     </>

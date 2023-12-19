@@ -28,10 +28,10 @@ function ProductDetailsPage() {
     // console.log(url_key);
     useEffect(() => {
         // Check if there is a cartId in local storage
-        const savedCartId = localStorage.getItem('cartId');
+        const CartId = localStorage.getItem('cartId');
 
-        if (savedCartId) {
-            console.log('Using saved cartId from local storage:', savedCartId);
+        if (CartId) {
+            console.log('GuestCart Id present:', CartId);
         } else {
             // If no cartId in local storage, create a new cart
             dispatch(createcart());
@@ -45,12 +45,7 @@ function ProductDetailsPage() {
     //check if online or offline with the help of token 
 
 
-    // State to store the selected option value
-    //  const [selectedValue, setSelectedValue] = useState({
-    //     cartid: `${cartId}`,
-    //     parentSku: "",
-    //     childSku: ""
-    // });
+
 
     const [selectedValue, setSelectedValue] = useState({
         cartid: "",

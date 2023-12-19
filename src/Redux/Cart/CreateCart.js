@@ -1,38 +1,7 @@
-
-
-// export const handleCreateCart = async () => {
-//   const requestBody = {
-//     query: `
-//       mutation {
-//         createEmptyCart 
-//       }
-//     `
-//   };
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import CreateCartMutation from "../../GraphQl/CreateCartMutation";
 
 
-//   try {
-//     const response = await fetch('/graphql', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//         // Include any necessary headers like authorization tokens here
-//       },
-//       body: JSON.stringify(requestBody)
-//     });
-
-//     const responseData = await response.json();
-//     // Assuming your GraphQL response structure matches the expected format
-//     // Access the cartId from the response and update the state
-//     console.log('response data:',responseData);
-//     return responseData?.data?.createEmptyCart;
-//   } catch (error) {
-//     console.error('Error creating cart:', error);
-//     throw error;
-//   }
-// };
 
 export const createcart = createAsyncThunk(
   "create_empty_cart",
@@ -46,10 +15,9 @@ export const createcart = createAsyncThunk(
     }
   }
 )
-
 const initialState = {
   status: '',
-  cartId: '',
+  guestcartId: '',
   errorMessage: ''
 };
 
@@ -66,8 +34,8 @@ export const CreateCartSlice = createSlice({
     })
       .addCase(createcart.fulfilled, (state, action) => {
         state.status = 'fullfilled'
-        state.cartId = action.payload;
-        localStorage.setItem('cartId', state.cartId);
+        // state.cartId = action.payload;
+        localStorage.setItem('cartId', action.payload);
         console.log("cartid create slice",action.payload);
         state.errorMessage="";
       })

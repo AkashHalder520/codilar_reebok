@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { productlist } from "../../../Redux/Products/Productlistslice";
 import Sidebar from "./sidebar/Sidebar";
 import { Link } from "react-router-dom";
+import Loader from "../../common/Loader/Loader";
 
 function Productlist(props) {
   // filter and sort button toggle side bar secton
@@ -70,8 +71,10 @@ function Productlist(props) {
     ];
     return (
       <>
-
-        {
+        {status=='loading' ? <Loader/> 
+        
+        : 
+        (
 
           currentProducts &&
           currentProducts.map((value, index) => (
@@ -98,7 +101,9 @@ function Productlist(props) {
             </Link>
           ))
 
+        )
         }
+        
 
       </>
     );

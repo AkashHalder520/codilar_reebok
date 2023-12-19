@@ -23,6 +23,10 @@
     margin: 0 10px;
     
 }
+.cartProductContainer{
+height: 400px;
+overflow-y: auto;
+}
 
 .miniCartTopL {
     margin-top: 10px;

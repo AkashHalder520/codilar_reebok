@@ -20,7 +20,7 @@ const CreateCartMutation=async()=>{
         const responseData = await response.json();
         // Assuming your GraphQL response structure matches the expected format
         // Access the cartId from the response and update the state
-        console.log('response data:',responseData);
+        console.log('response empty cart data:',responseData);
         return responseData?.data?.createEmptyCart;
       } catch (error) {
         console.error('Error creating cart:', error);
