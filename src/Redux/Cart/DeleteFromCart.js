@@ -27,17 +27,16 @@ export const DeleteFromCartSlice=createSlice({
     },
     extraReducers: (builder)=>{
         builder.addCase(deletefromcart.pending,(state,action)=>{
-            state.status= 'loading'
+            state.Delstatus= 'loading'
             state.errorMessage=""
         })
         .addCase(deletefromcart.fulfilled, (state, action) => {
-            state.status = 'fullfilled'
+            state.Delstatus = 'fullfilled'
             state.response= action.payload;
-            // console.log(action.payload);
             state.errorMessage="";
           })
           .addCase(deletefromcart.rejected, (state, action) => {
-            state.status = 'rejected'
+            state.Delstatus = 'rejected'
             state.errorMessage="Failed to fetch data from server please come back after some time"
           })
     }

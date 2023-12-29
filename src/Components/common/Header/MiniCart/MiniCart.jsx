@@ -6,23 +6,24 @@ import styles from './MiniCart.module.css';  // Import the CSS module
 import { MdDelete } from "react-icons/md";
 import { Link } from 'react-router-dom';
 import { check_token } from '../../../../Redux/GenerateLoginToken/GrenerateLoginTokenSlice';
+import Loader from '../../Loader/Loader';
 
 function MiniCart({ cartBtnToggle }) {
     const dispatch = useDispatch();
 
     useEffect(() => {
         let cartId = localStorage.getItem('cartId');
-        let customerCartId=localStorage.getItem('CustomerCartId')
+        let customerCartId = localStorage.getItem('CustomerCartId')
         let token = localStorage.getItem('customerToken')
         // for login customer cart
         if (token !== "undefined" && token !== null && token !== "") {
             dispatch(cartdata(customerCartId)).then(() => dispatch(check_token()));
         } else {
-            
-            dispatch(cartdata(cartId)).then(()=>dispatch(check_token()))
+
+            dispatch(cartdata(cartId)).then(() => dispatch(check_token()))
         }
 
-    },[cartBtnToggle]);
+    }, [cartBtnToggle]);
 
     const { status, guestCartData, errorMessage } = useSelector((state) => state.cartDataSlice);
     const { CustomerCartData } = useSelector((state) => state.customercart)
@@ -33,19 +34,22 @@ function MiniCart({ cartBtnToggle }) {
         console.log("onclick uid", uid);
         let cartId = localStorage.getItem('cartId');
         let token = localStorage.getItem('customerToken')
-        let customerCartId=localStorage.getItem('CustomerCartId')
+        let customerCartId = localStorage.getItem('CustomerCartId')
         if (token !== "undefined" && token !== null && token !== "") {
             dispatch(deletefromcart({ uid, customerCartId })).then(() => dispatch(cartdata(customerCartId))).catch((error) => {
                 // Handle any error that occurs during the dispatch
                 console.error("Error deleting product:", error);
             });
-        }else{
-        dispatch(deletefromcart({ uid, cartId })).then(() => dispatch(cartdata(cartId))).catch((error) => {
-            // Handle any error that occurs during the dispatch
-            console.error("Error deleting product:", error);
-        });
-    }
+        } else {
+            dispatch(deletefromcart({ uid, cartId })).then(() => dispatch(cartdata(cartId))).catch((error) => {
+                // Handle any error that occurs during the dispatch
+                console.error("Error deleting product:", error);
+            });
+        }
+
+
     };
+    const { Delstatus } = useSelector((state) => state.deleteCartData)
     const MiniCartContentGuest = () => {
         return (
             <div className={cartBtnToggle ? styles.closeMiniCart : styles.openMiniCart}>
@@ -85,11 +89,13 @@ function MiniCart({ cartBtnToggle }) {
                                                     <h3>{value?.prices?.row_total?.currency} {value?.prices?.row_total?.value}</h3>
                                                     <div className={styles.miniCartUtil}>
                                                         <div className={styles.miniCartQty}>
-                                                            <p>Qty:</p>
-                                                            <input type="number" value={value?.quantity} />
+                                                            <p>Qty:{value.quantity}</p>
+                                                            {/* <input type="number" value={value?.quantity} /> */}
                                                         </div>
                                                         <div className={styles.miniCartEdit}>
-                                                            <button onClick={() => handelDeleteclick(value.uid)}><MdDelete size={20} /></button>
+                                                           
+                                                                <button onClick={() => handelDeleteclick(value.uid)}><MdDelete size={20} /></button>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -111,7 +117,7 @@ function MiniCart({ cartBtnToggle }) {
     const MiniCartContentCustomer = () => {
         return (
             <div className={cartBtnToggle ? styles.closeMiniCart : styles.openMiniCart}>
-                {CustomerCartData?.items?.length == 0 ?(
+                {CustomerCartData?.items?.length == 0 ? (
                     <p>No data in cart</p>
                 ) : (
                     <>
@@ -172,7 +178,7 @@ function MiniCart({ cartBtnToggle }) {
     }
     return (
         <>
-            { MiniCartContentGuest()}
+            {MiniCartContentGuest()}
             {/* if the customer token present then   */}
         </>
     );

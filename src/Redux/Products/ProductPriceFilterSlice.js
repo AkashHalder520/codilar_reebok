@@ -15,12 +15,12 @@ const initialState = {
 export const ProductPriceFilter = createAsyncThunk(
   "poduct_display based on filter",
 
-  async (priceRange) => {
-    console.log("prcefilter slice",priceRange);
+  async ({ priceRange, category_type }) => {
+    console.log("prcefilter slice",priceRange,category_type);
     
 
     try {
-      const data = await PlpQuery(priceRange);
+      const data = await PlpQuery(priceRange,category_type);
       return data;
     } catch (error) {
       console.error('Error fetching data:', error);

@@ -6,6 +6,9 @@
     margin: 2px auto;
     width: 80%;
 }
+.wholepage button:hover{
+    background-color: blue;
+}
 .leftside{
     width: 55%;
 }

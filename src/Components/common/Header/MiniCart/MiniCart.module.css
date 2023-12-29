@@ -75,12 +75,14 @@ overflow-y: auto;
 
 .miniCartProductImg {
     float: left;
+    height: 80px;
+    width: 80px;
     background-color: #d2d6d0;
     margin: 10px;
 }
 
 .miniCartProductImg img {
-    width: 80px;
+    width: 100%;
 }
 
 .miniCartProductDetails {
@@ -111,6 +113,9 @@ overflow-y: auto;
     display: flex;
     gap: 10px;
     margin-right: 10px;
+}
+.miniCartEdit button{
+    cursor: pointer;
 }
 .cardProductContainer{
     height: 400px;

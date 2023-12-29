@@ -129,6 +129,10 @@ a:hover{
 .user-links button{
     background: none;
     border: none;
+    
+}
+.user-links button:hover{
+    cursor: pointer;
 }
 .user-links a {
     text-decoration: none;

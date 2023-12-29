@@ -21,6 +21,10 @@ const AppRoutes = ({ status }) => (
       path="/productList"
       element={status ? <OfflinePage /> : <Productlist />}
     />
+      <Route
+      path="/productList/:category_type"
+      element={status ? <OfflinePage /> : <Productlist />}
+    />
     <Route
       path="/ProductDetailsPage/:url_key"
       element={status ? <OfflinePage /> : <ProductDetailsPage />}

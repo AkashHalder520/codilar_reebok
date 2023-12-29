@@ -143,7 +143,7 @@ export default function Header() {
             <ul className="dropdown">
                 {dropdownData.map((child, idx) => (
                     <li key={idx}>
-                        <a href={`#${child.path}`}>{child.name}</a>
+                        <Link to={`/productList/${child.name}`}>{child.name}</Link>
                     </li>
                 ))}
             </ul>
@@ -199,7 +199,7 @@ export default function Header() {
                                         // console.log(item.name);
                                         return (
                                             <>
-                                                <li key={item}><a href="#">{item.name}</a>
+                                                <li key={item}><Link to={`/productList/${item.name}`}>{item.name}</Link>
                                                     {renderDropdown(item.children)}
                                                 </li>
                                             </>

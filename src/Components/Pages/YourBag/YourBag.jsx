@@ -2,8 +2,10 @@ import styles from './YourBag.module.css'; // Import the module CSS styles
 import payImg from './Mediamodifier-Design-Template.png'
 import { ReactCompomponent as MySVG } from './logo.svg'
 import { cartdata } from '../../../Redux/Cart/CartData';
+import { IoIosClose } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { deletefromcart } from '../../../Redux/Cart/DeleteFromCart';
 function YourBag() {
     const dispatch = useDispatch()
 
@@ -20,6 +22,27 @@ function YourBag() {
         }
 
     }, []);
+
+    const handelDeleteclick = (uid) => {
+        console.log("onclick uid", uid);
+        let cartId = localStorage.getItem('cartId');
+        let token = localStorage.getItem('customerToken')
+        let customerCartId = localStorage.getItem('CustomerCartId')
+        if (token !== "undefined" && token !== null && token !== "") {
+            dispatch(deletefromcart({ uid, customerCartId })).then(() => dispatch(cartdata(customerCartId))).catch((error) => {
+                // Handle any error that occurs during the dispatch
+                console.error("Error deleting product:", error);
+            });
+        } else {
+            dispatch(deletefromcart({ uid, cartId })).then(() => dispatch(cartdata(cartId))).catch((error) => {
+                // Handle any error that occurs during the dispatch
+                console.error("Error deleting product:", error);
+            });
+        }
+
+
+    };
+
     const { status, guestCartData, errorMessage } = useSelector((state) => state.cartDataSlice);
     return (
         <>
@@ -43,7 +66,9 @@ function YourBag() {
                                         <div className={styles.productrightsidedetails}>
                                             <p>{value?.product?.name}</p>
                                             <p>{value?.prices?.row_total?.currency} {value?.prices?.row_total?.value}</p>
-                                            <div className={styles.cartcancel}>x</div>
+                                            <div className={styles.cartcancel}>
+                                               <button onClick={() => handelDeleteclick(value.uid)}><IoIosClose /></button> 
+                                                </div>
                                         </div>
                                         <div className={styles.productrightsideqty}>
                                             <select name="" id="">

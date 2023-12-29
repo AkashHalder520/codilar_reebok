@@ -1,5 +1,6 @@
-const PlpQuery= async(priceRange)=>{
-    try {
+const PlpQuery= async(priceRange,category_type)=>{
+console.log("paramsplp", category_type);
+  try {
         const response = await fetch('/graphql', {
           method: 'POST',
           headers: {
@@ -9,6 +10,7 @@ const PlpQuery= async(priceRange)=>{
             query: `
             query {
               products(
+                search: "${category_type? category_type : ""}",
                 filter: {
                   price: {
                     from: "${priceRange[0]}"
@@ -47,6 +49,7 @@ const PlpQuery= async(priceRange)=>{
         }
   
         const data = await response.json();
+        console.log("category_type",data);
         return data;
       } catch (error) {
         console.error('Error fetching data:', error);
