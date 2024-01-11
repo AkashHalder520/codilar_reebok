@@ -1,0 +1,241 @@
+
+
+.page-header , .header-container , .header-top{
+    background-color: #244496;
+    height: 30px;
+    text-align: center;
+
+
+}
+.frist-link{
+    color: white;
+    font-size: 12px;
+    letter-spacing: .02rem;
+    text-decoration: none;
+    margin-top: 5px;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+@media screen and (max-width: 768px) {
+    .page-header, .header-container, .header-top {
+        height: auto; /* Adjust height as needed for smaller screens */
+    }
+
+    .frist-link {
+        font-size: 10px; /* Adjust font size for smaller screens */
+    }
+    .header-middle{
+        display: none !important;
+    }
+}
+
+.header-middle{
+    padding-top: 10px;
+}
+.header-middle , .h-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: row-reverse;
+    max-width: 92%;
+
+}
+
+.h-links a{
+
+    padding: 5px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 12px;
+    color: black;
+}
+.h-links a:hover {
+    background-color: #D2D6D0; /* Change the background color on hover */
+    border-color: #333; /* Change the border color on hover */
+
+}
+
+/*main header css*/
+
+.header-main {
+    background-color: white;
+    color:black;
+    /* padding: 10px; */
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    max-width: 85%;
+    margin: 0 auto;
+   
+    
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    margin-right: 20px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+.nav a:hover {
+    /*text-decoration: none;*/
+    /*color: black;*/
+    /*font-weight: 500;*/
+    text-decoration: underline;
+
+}
+
+.search-bar {
+    margin-left: auto;
+
+    display: flex;
+    border: none;
+}
+
+.search-input {
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+
+}
+.search-bar button{
+    background: none;
+    border: none;
+}
+
+.user-links {
+    display: flex;
+    align-items: center;
+   gap: 10px;
+    justify-content: space-between;
+   
+}
+.user-links button{
+    background: none;
+    border: none;
+    
+}
+.user-links button:hover{
+    cursor: pointer;
+}
+.user-links a {
+    text-decoration: none;
+    color: black;
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 900px) {
+    .header-main .nav {
+        display: none; /* Hide the header in mobile view */
+    }
+
+}
+
+@media screen and (max-width: 570px) {
+     .search-bar input {
+        display: none; /* Hide the header in mobile view */
+    }
+    .header-main{
+        padding: 10px;
+    }
+}
+
+
+/*sidebar*/
+
+.toggleButton{
+    background-color: white;
+    border: none;
+    display: none;
+}
+
+.sidebar{
+    display: flex;
+    width: 100%;
+    height :100vh;
+    background-color: whitesmoke;
+    position: absolute;
+    z-index: 10;
+    transform: translateX(-100%);
+    transition: transform 500ms ease-in
+}
+
+.sidebar a{
+    text-decoration: none;
+}
+.sidebar ul li{
+    list-style: none;
+    text-align: center;
+    padding: 10px 0px;
+    border-bottom: 2px solid black;
+}
+.sidebar ul li:hover{
+    background-color: rgb(189, 179, 179);
+    color: black ;
+}
+.colapse{
+    transform: translateX(0%);
+    transition: transform 500ms ease-in-out;
+
+}
+@media screen and (max-width: 900px) {
+    .toggleButton {
+        display: flex; /* Hide the header in mobile view*/
+    }
+    .logo{
+        margin-left: 80%;
+    }
+    .sidebar{
+        display: block;
+    }
+} 
+
+
+
+/*************************/
+.nav li:hover .dropdown{
+    display: block;
+}
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    list-style-type: none;
+    padding: 0;
+}
+
+.dropdown li {
+    padding: 8px 12px;
+}
+
+.dropdown li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+/* Show dropdown on hover */
+.sidebar li:hover .dropdown {
+    display: block;
+
+}
+

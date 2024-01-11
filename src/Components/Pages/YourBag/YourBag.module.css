@@ -1,0 +1,228 @@
+/* Default styles for larger screens */
+.wholepage {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    margin: 2px auto;
+    width: 80%;
+}
+.wholepage button:hover{
+    background-color: blue;
+}
+.leftside{
+    width: 55%;
+}
+.cardProductContainer{
+    height: 500px;
+    overflow-y: auto;
+}
+.product {
+    border: 1px solid black;
+    align-items: center;
+    margin-top: 5%;
+    height: 250px;
+    display: flex;
+    gap: 1vw;
+    /* font-size: large; */
+}
+
+.productleftside img {
+    width: 100%;
+    object-fit: fill;
+    height: 100%;
+}
+.productrightside{
+    width: 70%;
+}
+
+.productrightsidedetails {
+    display: flex;
+    justify-content: space-between;
+    gap: 1vw;
+    padding: 16px;
+    margin-top: 18px;
+}
+
+.productrightsideqty select {
+    
+    margin-bottom: 18px;
+    height: 50px;
+    margin-top: 16%;
+    width: 20%;
+}
+.productrightsidedetails p  {
+    
+   font-size: large;
+   font-weight: 500;
+}
+.mobileviewbtn button{
+    display: none;
+}
+.rightside {
+    margin-top: 2%;
+}
+
+.buttonPrimary {
+    padding: 10px 15px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px 0px white, 3px 3px 0px 1px black;
+}
+.buttonPrimaryx{
+    display: none;
+}
+
+.items {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ordersummary {
+    padding: 1vw;
+    margin-top: 50px;
+    border: .5px solid grey;
+}
+
+.promo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: .5px solid black;
+    margin-top: 20px;
+    height: 60px;
+}
+
+.paymentIn img {
+    width: 50px;
+}
+
+.paymentIn {
+    border: .5px solid rgb(206, 206, 206);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px;
+    height: 90px;
+    border-radius: 10px;
+}
+
+.paymentIn p {
+    margin-top: 4px;
+}
+
+.paymentMethod {
+    margin-top: 30px;
+}
+
+.paymentMethod h5 {
+    letter-spacing: 2px;
+}
+
+.paymentMethod img {
+    margin-top: 10px;
+    width: 13vw;
+}
+
+.productleftsidecheckout {
+    margin-top: 20px;
+    display: flex;
+    gap: 2vw;
+}
+
+.buttonPrimaryCheckout {
+    font-weight: bold;
+    padding: 10px 15px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    width: 85%;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px 0px white, 3px 3px 0px 1px black;
+}
+.buttonPrimaryupdate{
+    font-weight: bold;
+    padding: 10px 15px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    width: 85%;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px 0px white, 3px 3px 0px 1px black;
+}
+
+.addGiftCard {
+    margin-top: 27px;
+}
+
+.buttonPrimaryCheckoutWhite {
+    font-weight: bold;
+    padding: 10px 15px;
+    background-color: white;
+    color: #000;
+    border: none;
+    width: 85%;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px 0px white, 3px 3px 0px 1px black;
+    border: 1px solid black;
+}
+
+.addGiftCardStatus {
+    margin-top: 20px;
+    display: flex;
+    gap: 2vw;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .wholepage {
+        flex-direction: column;
+        align-items: center;
+        margin: auto;
+        width: 98% ;
+    }
+    .leftside{
+        width: inherit;
+    }
+
+    .product {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .productleftside img {
+        width: 100%;
+        height: auto;
+    }
+    .rightside .buttonPrimary{
+        display: none !important;
+    }
+    .mobileviewbtn{
+        display: flex;
+        justify-content: space-between;
+    }
+    .mobileviewbtn button{
+        display: flex;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+    }
+   
+.buttonPrimaryupdate{
+    width: 100%;
+}
+.buttonPrimaryx{
+    display: block;
+    padding: 10px 15px;
+    background-color: black;
+    color: #fff;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    box-shadow: 3px 3px 0px 0px white, 3px 3px 0px 1px black;
+}
+    /* Add more responsive styles as needed */
+}

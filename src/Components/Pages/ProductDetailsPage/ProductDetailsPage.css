@@ -1,0 +1,231 @@
+.pdp_page{
+    padding-left: 2%;
+}
+.pdp-details {
+    width: 35%;
+    padding:  2%
+}
+
+.pdp-main {
+    display: flex;
+    gap: 2%;
+}
+.pdp-img{
+    width: 65%;
+}
+.pdp-img img{
+    width: 100%;
+}
+.pdp-sub-img{
+    display: flex;
+
+}
+
+.title {
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+.price {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.color {
+    margin-top: 18px;
+}
+
+.size-details {
+    padding-right: 15%;
+    margin-top: 9%;
+}
+.size {
+    display: flex;
+    justify-content: space-between;
+}
+
+.size-chart {
+    margin-top: 10px;
+    /* display: flex; */
+    justify-content: center;
+    
+}
+
+.size-chart div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 10vw; */
+    height: 50px;
+    border-collapse: collapse;
+}
+
+.size-chart div:hover {
+    border: 2px solid black;
+}
+.add{
+    display: flex;
+    margin-top: 5%;
+    justify-content: space-between;
+    padding-right: 15%;
+}
+.addtocartBtn{
+    border: none;
+    background: none;
+}
+.adtobag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    background-color: #000;
+    width: 20vw;
+    height: 6vh;
+    box-shadow: 3px 3px 0px 1px white, 3px 3px 0px 2px black;
+}
+.adtobag:hover{
+    background-color:  #244496;
+}
+.hearticon{
+    margin-left: 3%;
+}
+
+.desc {
+    margin-top: 120px;
+}
+
+.desc button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    
+}
+.desc-title {
+    
+    height: 70px;
+    width: 60%;
+   
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: large;
+    font-weight: bold;
+
+
+}
+/* .line { 
+    height: .5px;
+    background-color: rgb(172, 169, 169);
+    width: 50vw;
+    margin-left: 10vw;
+} */
+
+.desc-main {
+   
+    height: 560px;
+    width: 60%;
+   
+    display: flex;
+    gap: 1vw;
+    overflow: hidden;
+    border-bottom: 2px solid #000;
+    
+  transition: 0.5s ease-in-out;
+}
+ .hidden {
+    height: 0px;
+    width: 60%;
+    
+    display: flex;
+    gap: 1vw;
+    overflow: hidden;
+    border-bottom: 2px solid #000;
+    
+  transition: 0.5s ease-in-out;
+  }
+
+
+.descLeft {
+    width: 30%;
+
+}
+.descLeft p{
+    font-size: 20px
+}
+.descLeft h1{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+.descRight {
+    width: 70%;
+}
+.descRight img {
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .pdp-main {
+      flex-direction: column;
+    }
+  
+    .pdp-details {
+      width: 100%; /* Adjust the width as needed */
+      padding: 2%;
+    }
+  
+    .pdp-img {
+      width: 100%;
+    }
+  
+    .pdp-sub-img {
+      flex-direction: column; /* Stack sub-images vertically */
+    }
+  
+    .size-details {
+      
+      margin-top: 5%; /* Adjust the margin as needed */
+    }
+    .adtobag{
+        width: 50vw;
+    }
+    .size-chart{
+        gap: 5%;
+    }
+    .desc-title ,.desc-main , .hidden{
+    width: 80%;
+    }
+  }
+  
+
+  #errmsg{
+    display: flex;
+    justify-content: center;
+    margin: 100px;
+  }
+
+  /* radiobutton */
+
+  .radio-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid #afafaf;
+  }
+  
+  .radio-input {
+    margin-right: 8px; /* Adjust as needed */
+    /* Hide the default radio button */
+    display: none;
+  }
+  
+  .label-content {
+    flex: 1;
+    padding: 8px; /* Adjust as needed */
+    border: 2px solid transparent; /* Initially transparent border */
+  }
+  
+  /* Apply styles when the radio button is checked */
+  .radio-input:checked + .label-content {
+    border-color: black; /* Change to the desired border color */
+  }

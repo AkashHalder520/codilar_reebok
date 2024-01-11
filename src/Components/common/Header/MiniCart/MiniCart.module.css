@@ -1,0 +1,131 @@
+.closeMiniCart {
+    display: none;
+}
+
+.openMiniCart {
+    position: absolute;
+    background-color: white;
+    width: 310px;
+    border: 1px solid rgb(121, 117, 117);
+    right: 5%;
+    z-index: 1;
+}
+
+.miniCartParent {
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.miniCartTop {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+    
+}
+.cartProductContainer{
+height: 400px;
+overflow-y: auto;
+}
+
+.miniCartTopL {
+    margin-top: 10px;
+    display: flex;
+    gap: 1px;
+}
+
+.miniCartTopR {
+    margin-top: 10px;
+}
+
+.miniCartCheckoutBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+  margin: 0px 50px;
+    height: 50px;
+    background-color: black;
+    border-radius: 6px;
+}
+
+.miniCartLine {
+    height: 1px;
+    width: 100%;
+    background-color: #888484;
+    margin-top: 6%;
+}
+
+.miniCartProductParent {
+    margin-top: 15px;
+    /* display: flex; */
+    justify-content: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gray;
+
+}
+
+.miniCartProduct {
+    /* display: flex; */
+    gap: 12px;
+    margin: 0 10px;
+    
+}
+
+.miniCartProductImg {
+    float: left;
+    height: 80px;
+    width: 80px;
+    background-color: #d2d6d0;
+    margin: 10px;
+}
+
+.miniCartProductImg img {
+    width: 100%;
+}
+
+.miniCartProductDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.miniCartUtil {
+    display: flex;
+    justify-content: space-between;
+}
+
+.miniCartQty {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+}
+
+.miniCartQty input {
+    width: 35px;
+    height: 35px;
+    /* border: 1px solid rgb(112, 111, 111); */
+    border: none;
+}
+
+.miniCartEdit {
+    display: flex;
+    gap: 10px;
+    margin-right: 10px;
+}
+.miniCartEdit button{
+    cursor: pointer;
+}
+.cardProductContainer{
+    height: 400px;
+    overflow-y: auto;
+
+}
+
+.minicartLastSec{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}

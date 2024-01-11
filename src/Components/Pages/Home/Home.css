@@ -1,0 +1,129 @@
+.top-carousle{
+    position: relative;
+    z-index: -1;
+}
+.popular , .button-links{
+    display: flex;
+    justify-content: center;
+}
+
+
+.links {
+    display: flex;
+    /* gap: 10px; Adjust the value to set the desired space between buttons */
+    flex-wrap: wrap;
+}
+
+.button-links button {
+    background-color: transparent;
+    /*border: ;*/
+    border: none;
+    padding: 20px;
+}
+
+.button-links button a {
+    text-decoration: none;
+    color: inherit;
+}
+.button-links button:hover {
+    /*background-color: transparent;*/
+    border: 2px solid black;
+    cursor: pointer;
+    /*padding: 20px;*/
+}
+
+/*firstcardsection*/
+
+.First_card_section {
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+    margin-top: 2%;
+    gap: 0.5%
+    
+}
+
+.First_card_sectionBND {
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+    margin-top: 2%;
+    gap: 0.5%
+    
+}
+@media screen and (max-width: 767px) {
+    .First_card_sectionBND {
+        flex-direction: column;
+    }
+    .First_card_section{
+        flex-direction: column;
+        width: 100%;
+    }
+    .First_card_section .card img{
+        width:100%;
+        height: 140px;
+        object-fit: cover;
+    }
+ 
+    .pagebuilder-mobile-hidden{
+        display: none !important;
+    }
+    .pagebuilder-mobile-view{
+        display: block !important;
+        width: 100%;
+    }
+
+}
+
+.card{
+    position: relative;
+    text-align: left;
+
+
+}
+.card img{
+    width:100%;
+  
+}
+
+.card span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    color: white; /* Set the text color to white */
+    /*background-color: rgba(0, 0, 0, 0.5); !* Add a background color with some transparency for better readability *!*/
+    padding: 10px;
+}
+
+/* gifsection */
+.pagebuilder-mobile-hidden {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .pagebuilder-mobile-view{
+    display: none;
+  }
+/* *******   */
+
+/*****************/
+.homeparagraph{
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+    gap: 2vw;
+
+}
+@media screen and (max-width: 767px) {
+.homeparagraph{
+    display: block !important;
+}
+}
+
+.homeparagraph p{
+    font-size: 13px;
+    font-weight: 300;
+}
