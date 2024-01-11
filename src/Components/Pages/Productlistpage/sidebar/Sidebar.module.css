@@ -115,23 +115,14 @@
 
 .desc-main {
 
-  /* height: ; */
-
-  /* display: flex; */
+height: auto;
   overflow: hidden;
-  /* border-bottom: 2px solid #000; */
-
   transition: 0.5s ease-in-out;
 }
 
 .hidden {
-  height: 0px;
-  /* height: 150px; */
-
-  /* display: flex; */
+height: 0;
   overflow: hidden;
-  /* border-bottom: 2px solid #000; */
-
   transition: 0.5s ease-in-out;
 }
 
@@ -180,4 +171,20 @@ gap: 8px;
 .category_type input{
   width: 20px;
   margin: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.grid-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+.grid-item:hover{
+  cursor: pointer;
+  border: 1px solid rgb(0, 0, 0);
 }

@@ -164,16 +164,16 @@ export default function Sidebar({ toggle, toggleMenu }) {
 
               <input type="text" placeholder='search' />
               <div className={styles.category_type}>
-              <input type="checkbox" name="radioAccessories" id="radioAccessories" />
-              <label htmlFor="radioAccessories">Accessories</label>
+                <input type="checkbox" name="radioAccessories" id="radioAccessories" />
+                <label htmlFor="radioAccessories">Accessories</label>
               </div>
               <div className={styles.category_type}>
-              <input type="checkbox" name="radioAccessories" id="radioAccessories" />
-              <label htmlFor="radioAccessories">Clothing</label>
+                <input type="checkbox" name="radioAccessories" id="radioAccessories" />
+                <label htmlFor="radioAccessories">Clothing</label>
               </div>
               <div className={styles.category_type}>
-              <input type="checkbox" name="radioAccessories" id="radioAccessories" />
-              <label htmlFor="radioAccessories">Shoes</label>
+                <input type="checkbox" name="radioAccessories" id="radioAccessories" />
+                <label htmlFor="radioAccessories">Shoes</label>
               </div>
             </div>
           </div>
@@ -187,11 +187,24 @@ export default function Sidebar({ toggle, toggleMenu }) {
           </div>
           <div className={toggle4 ? styles['desc-main'] : styles.hidden}>
             <div className={styles.category}>
-            
-              
+              <div className={styles['grid-container']}>
+                <div className={styles['grid-item']}>1</div>
+                <div className={styles['grid-item']}>2</div>
+                <div className={styles['grid-item']}>3</div>
+                <div className={styles['grid-item']}>4</div>
+                <div className={styles['grid-item']}>5</div>
+                <div className={styles['grid-item']}>6</div>
+                <div className={styles['grid-item']}>7</div>
+                <div className={styles['grid-item']}>8</div>
+                <div className={styles['grid-item']}>9</div>
+              </div>
             </div>
           </div>
         </div>
+
+        <div className={styles.line}></div>
+
+        
       </div>
 
 
